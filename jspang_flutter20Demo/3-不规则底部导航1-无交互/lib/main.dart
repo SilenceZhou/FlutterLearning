@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages.dart';
+import 'bottom_appBar_demo.dart';
 
 
 void main()=>runApp(MyApp());
@@ -10,10 +10,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '自定义bottomTabbar',
       theme: ThemeData(
-        primaryColor: Colors.blue,
+        primaryColor: Colors.white,
       ),
-      // 单独放一个文件里面进行定制
-      home: FirstPage(),
+      home: BottomAppBarDemo(),
     );
   }
 }
