@@ -9,14 +9,13 @@ class Product {
 
 typedef void CartChangedCallback(Product product, bool inCart);
 
-
-class ShoppingListItem extends StatelessWidget {
+class ShoppingListItem extends StatelessWidget { //无状态
   ShoppingListItem({Product product, this.inCart, this.onCartChanged})
       : product = product,
         super(key: new ObjectKey(product));
 
   final Product product;
-  final bool inCart;
+  final bool inCart;//widget不会直接修改其inCart的值。相反，widget会调用其父widget给它的onCartChanged回调函数
   final CartChangedCallback onCartChanged;
 
   Color _getColor(BuildContext context) {
@@ -51,6 +50,9 @@ class ShoppingListItem extends StatelessWidget {
   }
 }
 
+
+
+////////////////////////////////////////
 class ShoppingList extends StatefulWidget {
   ShoppingList({Key key, this.products}) : super(key: key);
 
@@ -61,15 +63,23 @@ class ShoppingList extends StatefulWidget {
   // widget (with the same key), the framework will re-use the State object
   // instead of creating a new State object.
 
+  //  当ShoppingList首次插入到树中时，框架会调用其 createState 函数以创建一个新的_ShoppingListState
+  //  实例来与该树中的相应位置关联（请注意，我们通常命名State子类时带一个下划线，这表示其是私有的）。 当这
+  //  个widget的父级重建时，父级将创建一个新的ShoppingList实例，但是Flutter框架将重用已经在树中的
+  // _ShoppingListState实例，而不是再次调用createState创建一个新的。
   @override
   _ShoppingListState createState() => new _ShoppingListState();
 }
+
+
+
 
 class _ShoppingListState extends State<ShoppingList> {
   Set<Product> _shoppingCart = new Set<Product>();
 
   void _handleCartChanged(Product product, bool inCart) {
     setState(() {
+      // 当用户更改购物车中的内容时，我们需要在setState调用中更改_shoppingCart以触发重建。 然后框架调用下面的build，它会更新应用程序的可视外观。
       // When user changes what is in the cart, we need to change _shoppingCart
       // inside a setState call to trigger a rebuild. The framework then calls
       // build, below, which updates the visual appearance of the app.
