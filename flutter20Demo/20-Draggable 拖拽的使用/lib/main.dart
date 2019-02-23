@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'tool_tip_demo.dart';
+import 'draggable_demo.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,8 +8,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FlutterDemo',
-      theme: ThemeData.light(),
-      home: ToolTipDemo(),
+      theme: ThemeData(primarySwatch: Colors.blue),
+
+      /// 右滑返回 iOS已经自带，可以作为适配Android
+      home: DraggableDemo(),
     );
   }
 }

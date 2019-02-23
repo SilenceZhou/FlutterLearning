@@ -267,8 +267,8 @@ class _HomepageState extends State<Homepage> {
   /// ==============================================
   ///   三、网络请求第三方库 Dio
   /// ==============================================
-  // 3.1 dio的get请求（baseUrl��是在dio.option.baseUrl设置的）
-  // 请求��可以在dio.option上设置��也可以����新建的option上设��,新���option是���选的
+  // 3.1 dio的get请求（baseUrl都是在dio.option.baseUrl设置的）
+  // 请求头可以在dio.option上设置，也可以在新建的option上设置,新建option是可选的
   void loadData_dio_get() async {
     var headers = Map<String, String>();
     headers['loginSource'] = 'IOS';
