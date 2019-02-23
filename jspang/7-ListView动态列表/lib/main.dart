@@ -20,9 +20,23 @@ class MyApp extends StatelessWidget {
           body: ListView.builder(
               itemCount: items.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text('${items[index]}'),
+                return GestureDetector(
+                  child: Container(
+                    child: ListTile(
+                      title: Text('${items[index]}'),
+                    ),
+                    color: (index % 2 == 0)
+                        ? Colors.lightGreenAccent
+                        : Colors.redAccent,
+                  ),
+                  onTap: () {
+                    print(items[index]);
+                  },
                 );
+
+                // return ListTile(
+                //   title: Text('${items[index]}'),
+                // );
               }),
         ));
   }
