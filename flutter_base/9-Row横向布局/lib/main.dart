@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
 //     return MaterialApp(
-//         title: '周云',
+//         title: 'Slincezhou',
 //         home: Scaffold(
 //           appBar: AppBar(
 //             title: Text('Row布局-水平布局'),
@@ -102,12 +102,12 @@ class MyApp extends StatelessWidget {
 //           //   crossAxisSpacing: 10.0,
 //           //   crossAxisCount: 3,
 //           //   children: <Widget>[
-//           //     const Text('周云'),
-//           //     const Text('周云2'),
-//           //     const Text('周云3'),
-//           //     const Text('周云4'),
-//           //     const Text('周云5'),
-//           //     const Text('周云6'),
+//           //     const Text('Slincezhou'),
+//           //     const Text('Slincezhou2'),
+//           //     const Text('Slincezhou3'),
+//           //     const Text('Slincezhou4'),
+//           //     const Text('Slincezhou5'),
+//           //     const Text('Slincezhou6'),
 //           //   ],
 //           // ),
 //         ));

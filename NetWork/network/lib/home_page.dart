@@ -20,12 +20,12 @@ class _HomepageState extends State<Homepage> {
       ..add('一、flutter系统自带 HttpClient')
       ..add('1.1. HttpClient - Get')
       ..add('1.2. HttpClient - Post')
-      ..add('二、请求第三方库 http')
+      ..add('二、网络请求第三方库 http')
       ..add('2.1. http - Get')
       ..add('2.2. http - Get-convenience')
       ..add('2.3. http - Post')
       ..add('2.4. http - Post-convenience')
-      ..add('三、请求第三方库 Dio')
+      ..add('三、网络请求第三方库 Dio')
       ..add('3.1. Dio - Get')
       ..add('3.2. Dio - Post-dioOfOptionsSetting')
       ..add('3.3. Dio - Post-newOptionSetting');
@@ -265,7 +265,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   /// ==============================================
-  ///   三、请求第三方库 Dio
+  ///   三、网络请求第三方库 Dio
   /// ==============================================
   // 3.1 dio的get请求（baseUrl��是在dio.option.baseUrl设置的）
   // 请求��可以在dio.option上设置��也可以����新建的option上设��,新���option是���选的

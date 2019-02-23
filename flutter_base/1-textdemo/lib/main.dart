@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Center(
           child: Text(
-            '周云最帅，且会为技术人生奋斗一生',
+            'Slincezhou最帅，且会为技术人生奋斗一生',
             textAlign: TextAlign.right, //对齐方式
             maxLines: 1, //总共行数
             overflow: TextOverflow.ellipsis, //结尾格式
