@@ -1,0 +1,683 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		214D5A60221BA574004C77CB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 214D5A5F221BA574004C77CB /* AppDelegate.m */; };
+		214D5A63221BA574004C77CB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214D5A62221BA574004C77CB /* ViewController.m */; };
+		214D5A66221BA574004C77CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214D5A64221BA574004C77CB /* Main.storyboard */; };
+		214D5A68221BA575004C77CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 214D5A67221BA575004C77CB /* Assets.xcassets */; };
+		214D5A6B221BA575004C77CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214D5A69221BA575004C77CB /* LaunchScreen.storyboard */; };
+		214D5A6E221BA575004C77CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 214D5A6D221BA575004C77CB /* main.m */; };
+		214D5A78221BA575004C77CB /* iOSInjectFlutterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 214D5A77221BA575004C77CB /* iOSInjectFlutterTests.m */; };
+		214D5A83221BA575004C77CB /* iOSInjectFlutterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 214D5A82221BA575004C77CB /* iOSInjectFlutterUITests.m */; };
+		215AC7EE221BAD7B001B2E8C /* libFlutterPluginRegistrant.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 215AC7ED221BAD7B001B2E8C /* libFlutterPluginRegistrant.a */; };
+		215AC7F2221BAE45001B2E8C /* TestFlutterVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 215AC7F1221BAE45001B2E8C /* TestFlutterVc.m */; };
+		8C26C91FA5390547A271A7DC /* libPods-iOSInjectFlutter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10299757734B96BBEC973BE4 /* libPods-iOSInjectFlutter.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		214D5A74221BA575004C77CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 214D5A53221BA574004C77CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 214D5A5A221BA574004C77CB;
+			remoteInfo = iOSInjectFlutter;
+		};
+		214D5A7F221BA575004C77CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 214D5A53221BA574004C77CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 214D5A5A221BA574004C77CB;
+			remoteInfo = iOSInjectFlutter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		10299757734B96BBEC973BE4 /* libPods-iOSInjectFlutter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSInjectFlutter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		214D5A5B221BA574004C77CB /* iOSInjectFlutter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSInjectFlutter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		214D5A5E221BA574004C77CB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		214D5A5F221BA574004C77CB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		214D5A61221BA574004C77CB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		214D5A62221BA574004C77CB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		214D5A65221BA574004C77CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		214D5A67221BA575004C77CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		214D5A6A221BA575004C77CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		214D5A6C221BA575004C77CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		214D5A6D221BA575004C77CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		214D5A73221BA575004C77CB /* iOSInjectFlutterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSInjectFlutterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		214D5A77221BA575004C77CB /* iOSInjectFlutterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSInjectFlutterTests.m; sourceTree = "<group>"; };
+		214D5A79221BA575004C77CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		214D5A7E221BA575004C77CB /* iOSInjectFlutterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSInjectFlutterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		214D5A82221BA575004C77CB /* iOSInjectFlutterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSInjectFlutterUITests.m; sourceTree = "<group>"; };
+		214D5A84221BA575004C77CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		215AC7ED221BAD7B001B2E8C /* libFlutterPluginRegistrant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFlutterPluginRegistrant.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		215AC7F0221BAE45001B2E8C /* TestFlutterVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestFlutterVc.h; sourceTree = "<group>"; };
+		215AC7F1221BAE45001B2E8C /* TestFlutterVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestFlutterVc.m; sourceTree = "<group>"; };
+		2AB198EFBD762127FACE630C /* Pods-iOSInjectFlutter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSInjectFlutter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSInjectFlutter/Pods-iOSInjectFlutter.debug.xcconfig"; sourceTree = "<group>"; };
+		ABDE11C2D2274526FB813674 /* Pods-iOSInjectFlutter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSInjectFlutter.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSInjectFlutter/Pods-iOSInjectFlutter.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		214D5A58221BA574004C77CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				215AC7EE221BAD7B001B2E8C /* libFlutterPluginRegistrant.a in Frameworks */,
+				8C26C91FA5390547A271A7DC /* libPods-iOSInjectFlutter.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		214D5A70221BA575004C77CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		214D5A7B221BA575004C77CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		214D5A52221BA574004C77CB = {
+			isa = PBXGroup;
+			children = (
+				214D5A5D221BA574004C77CB /* iOSInjectFlutter */,
+				214D5A76221BA575004C77CB /* iOSInjectFlutterTests */,
+				214D5A81221BA575004C77CB /* iOSInjectFlutterUITests */,
+				214D5A5C221BA574004C77CB /* Products */,
+				5B4F4B5E7018242CF10D12E8 /* Pods */,
+				AC14BC6782CF2BDE8F853D0D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		214D5A5C221BA574004C77CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				214D5A5B221BA574004C77CB /* iOSInjectFlutter.app */,
+				214D5A73221BA575004C77CB /* iOSInjectFlutterTests.xctest */,
+				214D5A7E221BA575004C77CB /* iOSInjectFlutterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		214D5A5D221BA574004C77CB /* iOSInjectFlutter */ = {
+			isa = PBXGroup;
+			children = (
+				214D5A5E221BA574004C77CB /* AppDelegate.h */,
+				214D5A5F221BA574004C77CB /* AppDelegate.m */,
+				214D5A61221BA574004C77CB /* ViewController.h */,
+				214D5A62221BA574004C77CB /* ViewController.m */,
+				215AC7F0221BAE45001B2E8C /* TestFlutterVc.h */,
+				215AC7F1221BAE45001B2E8C /* TestFlutterVc.m */,
+				214D5A64221BA574004C77CB /* Main.storyboard */,
+				214D5A67221BA575004C77CB /* Assets.xcassets */,
+				214D5A69221BA575004C77CB /* LaunchScreen.storyboard */,
+				214D5A6C221BA575004C77CB /* Info.plist */,
+				214D5A6D221BA575004C77CB /* main.m */,
+			);
+			path = iOSInjectFlutter;
+			sourceTree = "<group>";
+		};
+		214D5A76221BA575004C77CB /* iOSInjectFlutterTests */ = {
+			isa = PBXGroup;
+			children = (
+				214D5A77221BA575004C77CB /* iOSInjectFlutterTests.m */,
+				214D5A79221BA575004C77CB /* Info.plist */,
+			);
+			path = iOSInjectFlutterTests;
+			sourceTree = "<group>";
+		};
+		214D5A81221BA575004C77CB /* iOSInjectFlutterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				214D5A82221BA575004C77CB /* iOSInjectFlutterUITests.m */,
+				214D5A84221BA575004C77CB /* Info.plist */,
+			);
+			path = iOSInjectFlutterUITests;
+			sourceTree = "<group>";
+		};
+		5B4F4B5E7018242CF10D12E8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2AB198EFBD762127FACE630C /* Pods-iOSInjectFlutter.debug.xcconfig */,
+				ABDE11C2D2274526FB813674 /* Pods-iOSInjectFlutter.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		AC14BC6782CF2BDE8F853D0D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				215AC7ED221BAD7B001B2E8C /* libFlutterPluginRegistrant.a */,
+				10299757734B96BBEC973BE4 /* libPods-iOSInjectFlutter.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		214D5A5A221BA574004C77CB /* iOSInjectFlutter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 214D5A87221BA575004C77CB /* Build configuration list for PBXNativeTarget "iOSInjectFlutter" */;
+			buildPhases = (
+				CECBE1DC7D278CE123F000FD /* [CP] Check Pods Manifest.lock */,
+				214D5A57221BA574004C77CB /* Sources */,
+				214D5A58221BA574004C77CB /* Frameworks */,
+				214D5A59221BA574004C77CB /* Resources */,
+				D74335DA4C86265D1971E62B /* [CP] Embed Pods Frameworks */,
+				215AC7EF221BADD2001B2E8C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOSInjectFlutter;
+			productName = iOSInjectFlutter;
+			productReference = 214D5A5B221BA574004C77CB /* iOSInjectFlutter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		214D5A72221BA575004C77CB /* iOSInjectFlutterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 214D5A8A221BA575004C77CB /* Build configuration list for PBXNativeTarget "iOSInjectFlutterTests" */;
+			buildPhases = (
+				214D5A6F221BA575004C77CB /* Sources */,
+				214D5A70221BA575004C77CB /* Frameworks */,
+				214D5A71221BA575004C77CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				214D5A75221BA575004C77CB /* PBXTargetDependency */,
+			);
+			name = iOSInjectFlutterTests;
+			productName = iOSInjectFlutterTests;
+			productReference = 214D5A73221BA575004C77CB /* iOSInjectFlutterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		214D5A7D221BA575004C77CB /* iOSInjectFlutterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 214D5A8D221BA575004C77CB /* Build configuration list for PBXNativeTarget "iOSInjectFlutterUITests" */;
+			buildPhases = (
+				214D5A7A221BA575004C77CB /* Sources */,
+				214D5A7B221BA575004C77CB /* Frameworks */,
+				214D5A7C221BA575004C77CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				214D5A80221BA575004C77CB /* PBXTargetDependency */,
+			);
+			name = iOSInjectFlutterUITests;
+			productName = iOSInjectFlutterUITests;
+			productReference = 214D5A7E221BA575004C77CB /* iOSInjectFlutterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		214D5A53221BA574004C77CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = zhouyun;
+				TargetAttributes = {
+					214D5A5A221BA574004C77CB = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					214D5A72221BA575004C77CB = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 214D5A5A221BA574004C77CB;
+					};
+					214D5A7D221BA575004C77CB = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 214D5A5A221BA574004C77CB;
+					};
+				};
+			};
+			buildConfigurationList = 214D5A56221BA574004C77CB /* Build configuration list for PBXProject "iOSInjectFlutter" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 214D5A52221BA574004C77CB;
+			productRefGroup = 214D5A5C221BA574004C77CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				214D5A5A221BA574004C77CB /* iOSInjectFlutter */,
+				214D5A72221BA575004C77CB /* iOSInjectFlutterTests */,
+				214D5A7D221BA575004C77CB /* iOSInjectFlutterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		214D5A59221BA574004C77CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				214D5A6B221BA575004C77CB /* LaunchScreen.storyboard in Resources */,
+				214D5A68221BA575004C77CB /* Assets.xcassets in Resources */,
+				214D5A66221BA574004C77CB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		214D5A71221BA575004C77CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		214D5A7C221BA575004C77CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		215AC7EF221BADD2001B2E8C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n\"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed\n";
+		};
+		CECBE1DC7D278CE123F000FD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iOSInjectFlutter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D74335DA4C86265D1971E62B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iOSInjectFlutter/Pods-iOSInjectFlutter-frameworks.sh",
+				"${PODS_ROOT}/../../my_flutter/.ios/Flutter/engine/Flutter.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flutter.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSInjectFlutter/Pods-iOSInjectFlutter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		214D5A57221BA574004C77CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				214D5A63221BA574004C77CB /* ViewController.m in Sources */,
+				215AC7F2221BAE45001B2E8C /* TestFlutterVc.m in Sources */,
+				214D5A6E221BA575004C77CB /* main.m in Sources */,
+				214D5A60221BA574004C77CB /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		214D5A6F221BA575004C77CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				214D5A78221BA575004C77CB /* iOSInjectFlutterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		214D5A7A221BA575004C77CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				214D5A83221BA575004C77CB /* iOSInjectFlutterUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		214D5A75221BA575004C77CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 214D5A5A221BA574004C77CB /* iOSInjectFlutter */;
+			targetProxy = 214D5A74221BA575004C77CB /* PBXContainerItemProxy */;
+		};
+		214D5A80221BA575004C77CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 214D5A5A221BA574004C77CB /* iOSInjectFlutter */;
+			targetProxy = 214D5A7F221BA575004C77CB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		214D5A64221BA574004C77CB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				214D5A65221BA574004C77CB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		214D5A69221BA575004C77CB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				214D5A6A221BA575004C77CB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		214D5A85221BA575004C77CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		214D5A86221BA575004C77CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		214D5A88221BA575004C77CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AB198EFBD762127FACE630C /* Pods-iOSInjectFlutter.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = iOSInjectFlutter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nongfai.iOSInjectFlutter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		214D5A89221BA575004C77CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABDE11C2D2274526FB813674 /* Pods-iOSInjectFlutter.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = iOSInjectFlutter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nongfai.iOSInjectFlutter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		214D5A8B221BA575004C77CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = iOSInjectFlutterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nongfai.iOSInjectFlutterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSInjectFlutter.app/iOSInjectFlutter";
+			};
+			name = Debug;
+		};
+		214D5A8C221BA575004C77CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = iOSInjectFlutterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nongfai.iOSInjectFlutterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSInjectFlutter.app/iOSInjectFlutter";
+			};
+			name = Release;
+		};
+		214D5A8E221BA575004C77CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = iOSInjectFlutterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nongfai.iOSInjectFlutterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iOSInjectFlutter;
+			};
+			name = Debug;
+		};
+		214D5A8F221BA575004C77CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = iOSInjectFlutterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nongfai.iOSInjectFlutterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iOSInjectFlutter;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		214D5A56221BA574004C77CB /* Build configuration list for PBXProject "iOSInjectFlutter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				214D5A85221BA575004C77CB /* Debug */,
+				214D5A86221BA575004C77CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		214D5A87221BA575004C77CB /* Build configuration list for PBXNativeTarget "iOSInjectFlutter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				214D5A88221BA575004C77CB /* Debug */,
+				214D5A89221BA575004C77CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		214D5A8A221BA575004C77CB /* Build configuration list for PBXNativeTarget "iOSInjectFlutterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				214D5A8B221BA575004C77CB /* Debug */,
+				214D5A8C221BA575004C77CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		214D5A8D221BA575004C77CB /* Build configuration list for PBXNativeTarget "iOSInjectFlutterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				214D5A8E221BA575004C77CB /* Debug */,
+				214D5A8F221BA575004C77CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 214D5A53221BA574004C77CB /* Project object */;
+}
