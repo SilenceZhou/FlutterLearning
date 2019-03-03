@@ -3,6 +3,7 @@ import '../Service/service_method.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:convert';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   final Widget child;
@@ -39,8 +40,12 @@ class _HomePageState extends State<HomePage> {
                 (snapshot.data['data']['findBanner'] as List).cast();
             List<Map> navigatorList2 =
                 (snapshot.data['data']['findIntegralConsume'] as List).cast();
+            String adPicture = navigatorList.first['imgUrl'];
 
-            /// TODO: 待处理 数组的基本操作 合并两个数组
+            String leaderImg = navigatorList.first['imgUrl'];
+            String leaderPhone = '13266584039';
+
+            swiper.addAll(navigatorList);
             navigatorList.addAll(navigatorList2);
             print('navigatorList === ${navigatorList.length}');
 
@@ -51,7 +56,14 @@ class _HomePageState extends State<HomePage> {
                 ),
                 TopNavigator(
                   navigatorList: navigatorList,
-                )
+                ),
+                AdBanner(
+                  adPicture: adPicture,
+                ),
+                // LeaderPhone(
+                //   leaderImage: leaderImg,
+                //   leaderPhone: leaderPhone,
+                // )
               ],
             );
           } else {
@@ -61,21 +73,21 @@ class _HomePageState extends State<HomePage> {
           }
         },
       ),
-      // body: SingleChildScrollView(
-      //   //
-      //   child: Text(homePageContent),
-      // ),
     );
   }
 }
 
-/// 首页轮播组件
-class SwiperDiy extends StatelessWidget {
-  final List swiperDataList;
+/// 自定义banner组件一定要用 statefulWidget
+class SwiperDiy extends StatefulWidget {
   final Widget child;
+  final List swiperDataList;
 
   SwiperDiy({Key key, this.child, this.swiperDataList}) : super(key: key);
 
+  _SwiperDiyState createState() => _SwiperDiyState();
+}
+
+class _SwiperDiyState extends State<SwiperDiy> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -84,9 +96,9 @@ class SwiperDiy extends StatelessWidget {
       width: ScreenUtil().setWidth(1080),
       child: Swiper(
         itemBuilder: ((BuildContext context, int index) {
-          return Image.network("${swiperDataList[index]['imgUrl']}");
+          return Image.network("${widget.swiperDataList[index]['imgUrl']}");
         }),
-        itemCount: swiperDataList.length,
+        itemCount: widget.swiperDataList.length,
         pagination: SwiperPagination(),
         autoplay: true,
       ),
@@ -94,6 +106,7 @@ class SwiperDiy extends StatelessWidget {
   }
 }
 
+// 顶部导航
 class TopNavigator extends StatelessWidget {
   final List navigatorList;
 
@@ -125,7 +138,7 @@ class TopNavigator extends StatelessWidget {
       height: ScreenUtil().setHeight(400),
       padding: EdgeInsets.all(3.0),
       child: GridView.count(
-        crossAxisCount: 2,
+        crossAxisCount: 3,
         padding: EdgeInsets.all(5.0),
         children: navigatorList.map((item) {
           return _grideViewItemUI(context, item);
@@ -133,4 +146,48 @@ class TopNavigator extends StatelessWidget {
       ),
     );
   }
+}
+
+/// 小部件
+class AdBanner extends StatelessWidget {
+  final String adPicture;
+
+  AdBanner({Key key, this.adPicture}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Image.network(adPicture),
+    );
+  }
+}
+
+/// 拨打电话
+class LeaderPhone extends StatelessWidget {
+  final Widget child;
+  final String leaderImage;
+  final String leaderPhone;
+
+  LeaderPhone({Key key, this.child, this.leaderImage, this.leaderPhone})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: InkWell(
+        onTap: () {},
+        child: Image.network(leaderImage),
+      ),
+    );
+  }
+
+  // _launchPhone() async {
+  //   String url = 'tel:' + leaderPhone;
+
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw '不能打电话';
+  //   }
+  // }
 }

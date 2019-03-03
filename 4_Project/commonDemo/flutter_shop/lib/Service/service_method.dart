@@ -14,6 +14,14 @@ Future getHomePageContent() async {
     dio.options.contentType = ContentType.parse("application/json");
     dio.options.headers = {"loginSource": "IOS"};
 
+    // 调试的时候打开， 不调试的时候注释掉
+    // (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+    //     (client) {
+    //   client.findProxy = (uri) {
+    //     return "PROXY 192.168.1.101:8888";
+    //   };
+    // };
+
     var formData = {
       "adType": "homeBanner,homeAd,homeBottom,findBanner,findIntegralConsume"
     };
