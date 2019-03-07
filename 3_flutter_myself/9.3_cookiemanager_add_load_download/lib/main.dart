@@ -114,51 +114,43 @@ class _MyAppState extends State<MyApp> {
 
   File _image;
   Future _getImage() async {
-    print('------查实获取图片');
+    /// 注意获取图片需要权限设置(iOS/Android项目里面自行设置一下)
+    print('------从相册获取图片');
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
-      print('获取图片成功');
+      print('相册------获取图片成功');
       _image = image;
     });
   }
 
   File _image2;
   Future _getImage2() async {
+    /// 调用相机获取图片
     var image = await ImagePicker.pickImage(
       source: ImageSource.camera,
       maxHeight: 240.0,
       maxWidth: 240.0,
     );
     setState(() {
-      print('获取图片成功');
+      print('相机------获取图片成功');
       _image2 = image;
     });
   }
 
+  /// 上传图片
   void _uploadImg() async {
     print('---------------开始上传图片');
     Options option = Options(method: 'post');
     option.connectTimeout = 60000;
     option.receiveTimeout = 60000;
-    option.headers = {"loginSource": "IOS", "cookie": cookieString};
-    // option.responseType = ResponseType.plain;
+    option.headers = {
+      "loginSource": "IOS",
+      "cookie": cookieString,
+      "Content-Type": "multipart/form-data" //图片上传一定是这个type类型
+    };
 
     Dio dio = Dio();
     dio.options.baseUrl = njqbaseUrl;
-
-// // /Users/zhouyun/Desktop/FlutterLearning/3_flutter_myself/9.3_cookiemanager_add_load_download/images/11.txt
-
-    String base64Image = base64Encode(_image.readAsBytesSync());
-    String fileName = _image.path.split("/").last;
-    String base64Image1 = base64Encode(_image2.readAsBytesSync());
-    String fileName1 = _image2.path.split("/").last;
-    print('fileName === ${fileName}, fileName1 === ${fileName1}');
-
-    // FormData formData = new FormData.from({
-    //   "reason": "原银行卡遗失或注销",
-    //   "idCardPositive": UploadFileInfo(base64Image, fileName),
-    //   "idCardNegative": _image2,
-    // });
 
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (client) {
@@ -167,13 +159,60 @@ class _MyAppState extends State<MyApp> {
       };
     };
 
-    Response response = await dio.post(newUploadUserChangeCardInfo,
-        data: {
-          "reason": "原银行卡遗失或注销",
-          "idCardPositive": base64Image,
-          "idCardNegative": base64Image1,
-        },
-        options: option);
+    /// 第一种
+    /// 参考链接1：https://medium.com/@nitishk72/flutter-uploading-image-to-server-aec76876b9e1
+    /// 参考链接2：https://medium.com/@samuelomole/upload-images-to-a-rest-api-with-flutter-7ec1c447ff0e
+    //String base64Image = base64Encode(_image.readAsBytesSync());
+    String fileName = _image.path.split("/").last;
+    //String base64Image1 = base64Encode(_image2.readAsBytesSync());
+    String fileName1 = _image2.path.split("/").last;
+
+    FormData formData = new FormData.from({
+      "reason": "原银行卡遗失或注销",
+      "idCardPositive":
+          UploadFileInfo.fromBytes(_image.readAsBytesSync(), fileName),
+      "idCardNegative":
+          UploadFileInfo.fromBytes(_image2.readAsBytesSync(), fileName1)
+    });
+
+    /// 第二种 ---直接用map作为data获取不成功
+    Map<String, dynamic> data = {
+      "reason": "原银行卡遗失或注销",
+      "idCardPositive": _image.readAsBytesSync(),
+      "idCardNegative": _image2.readAsBytesSync(),
+    };
+
+    /// 第三种方法：绝对路径OK
+    FormData formData3 = FormData.from({
+      "reason": "上传图片原因",
+      "idCardPositive": UploadFileInfo(
+          File(
+              "/Users/zhouyun/Desktop/FlutterLearning/3_flutter_myself/9.3_cookiemanager_add_load_download/images/111.png"),
+          "111.png"),
+      "idCardNegative": UploadFileInfo(
+          File(
+              "/Users/zhouyun/Desktop/FlutterLearning/3_flutter_myself/9.3_cookiemanager_add_load_download/images/2222.png"),
+          "2222.png")
+    });
+
+    /// 第四种：相对路径不行 ---- 已经给作者提issue
+    FormData formData4 = FormData.from({
+      "reason": "上传图片原因",
+      "idCardPositive": UploadFileInfo(File("../images/111.png"), "111.png"),
+      "idCardNegative": UploadFileInfo(File("../images/2222.png"), "2222.png")
+    });
+
+    Response response = await dio.post(
+      newUploadUserChangeCardInfo,
+      data: data,
+      options: option,
+      onSendProgress: (received, total) {
+        /// 打印进度
+        if (total != -1) {
+          print((received / total * 100).toStringAsFixed(0) + "%");
+        }
+      },
+    );
 
     if (response.statusCode == HttpStatus.ok) {
       debugPrint(
@@ -186,10 +225,15 @@ class _MyAppState extends State<MyApp> {
 
   dynamic cookieString;
   void _loadmyIntegralDetail() async {
+    print('cookieString == ${cookieString}');
     Options option = Options(method: 'post');
     option.connectTimeout = 60000;
     option.receiveTimeout = 60000;
-    option.headers = {"loginSource": "IOS", "cookie": cookieString};
+    option.headers = {
+      "loginSource": "IOS",
+      "cookie": cookieString,
+      "Content-Type": "multipart/form-data"
+    };
 
     Dio dio = Dio();
     dio.options.baseUrl = njqbaseUrl;
