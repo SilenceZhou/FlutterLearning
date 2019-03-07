@@ -162,6 +162,7 @@ class _MyAppState extends State<MyApp> {
     /// 第一种
     /// 参考链接1：https://medium.com/@nitishk72/flutter-uploading-image-to-server-aec76876b9e1
     /// 参考链接2：https://medium.com/@samuelomole/upload-images-to-a-rest-api-with-flutter-7ec1c447ff0e
+    /// 源码参考 ： https://github.com/flutterchina/dio
     //String base64Image = base64Encode(_image.readAsBytesSync());
     String fileName = _image.path.split("/").last;
     //String base64Image1 = base64Encode(_image2.readAsBytesSync());
