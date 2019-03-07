@@ -95,12 +95,12 @@ class _MyAppState extends State<MyApp> {
     Dio dio = Dio();
     dio.options.baseUrl = njqbaseUrl;
 
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (client) {
-      client.findProxy = (uri) {
-        return "PROXY 192.168.1.102";
-      };
-    };
+    // (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+    //     (client) {
+    //   client.findProxy = (uri) {
+    //     return "PROXY 192.168.1.102";
+    //   };
+    // };
 
     Response response = await dio.post(myIntegralDetailUrl,
         data: {

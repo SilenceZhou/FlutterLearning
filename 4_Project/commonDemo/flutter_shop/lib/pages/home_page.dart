@@ -13,7 +13,23 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+// 1.重写keep
+// 2.必须是statefulwidget
+// 3.使用了pageView 和 IndexedStack时才能使用
+
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // 重新加载会打印
+    print('1111111');
+  }
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 828, height: 1792)..init(context);
@@ -45,6 +61,7 @@ class _HomePageState extends State<HomePage> {
 
               String leaderImg = navigatorList.first['imgUrl'];
               String leaderPhone = '13266584039';
+              String floor1TitleImgUrl = navigatorList.first["imgUrl"];
 
               swiper.addAll(navigatorList);
               navigatorList.addAll(navigatorList2);
@@ -70,6 +87,7 @@ class _HomePageState extends State<HomePage> {
                   Recommend(
                     recommendList: recommentList,
                   ),
+                  FlootTitle()
                 ],
               );
             } else {
@@ -280,6 +298,75 @@ class Recommend extends StatelessWidget {
           _titleWidget(),
           _recommendList(),
         ],
+      ),
+    );
+  }
+}
+
+// 楼层标题
+class FlootTitle extends StatelessWidget {
+  final String picture_address;
+
+// 楼层标题
+  FlootTitle({Key key, this.picture_address}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: Image.network(picture_address),
+    );
+  }
+}
+
+class FloorConent extends StatelessWidget {
+  final List floorGoodsList;
+
+  FloorConent({Key key, this.floorGoodsList}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          _firstRow(),
+          _otherGoods(),
+        ],
+      ),
+    );
+  }
+
+  Widget _otherGoods() {
+    return Row(
+      children: <Widget>[
+        _goodsItem(floorGoodsList[3]),
+        _goodsItem(floorGoodsList[4]),
+      ],
+    );
+  }
+
+  Widget _firstRow() {
+    return Row(
+      children: <Widget>[
+        _goodsItem(floorGoodsList[0]),
+        Column(
+          children: <Widget>[
+            _goodsItem(floorGoodsList[1]),
+            _goodsItem(floorGoodsList[2]),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _goodsItem(Map goods) {
+    return Container(
+      width: ScreenUtil().setWidth(375),
+      child: InkWell(
+        onTap: () {
+          print('打印了');
+        },
+        child: Image.network(goods['imgUrl']),
       ),
     );
   }
