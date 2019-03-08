@@ -4,6 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:convert';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:io';
 
 class HomePage extends StatefulWidget {
   final Widget child;
@@ -13,9 +14,14 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-// 1.重写keep
-// 2.必须是statefulwidget
-// 3.使用了pageView 和 IndexedStack时才能使用
+/// 如何让页面保持状态？
+/// 场景： 如何让tabbar页面切换的时候不需要重新渲染和加载数据？
+/// 前提： 针对StatefulWidget中的State
+/// 实现步奏如下：
+/// 1.先混入AutomaticKeepAliveClientMixin : with AutomaticKeepAliveClientMixin
+/// 2.重写 wantKeepAlive:
+/// @override bool get wantKeepAlive => true;
+/// 3.使用了pageView 和 IndexedStack时才能使用
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
@@ -38,6 +44,9 @@ class _HomePageState extends State<HomePage>
     print('设备的高${ScreenUtil.screenHeight}');
     print('设备的宽度${ScreenUtil.screenWidth}');
 
+    // 获取平台信息
+    print('Platform.environment = ${Platform.version}, ${Platform.isIOS}');
+
     return Scaffold(
       appBar: AppBar(
         title: Text('首页'),
@@ -45,6 +54,7 @@ class _HomePageState extends State<HomePage>
       // 异步请求在渲染，不需要改变状态
       body: SingleChildScrollView(
         child: FutureBuilder(
+          // 获取数据
           future: getHomePageContent(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -63,16 +73,26 @@ class _HomePageState extends State<HomePage>
               String leaderPhone = '13266584039';
               String floor1TitleImgUrl = navigatorList.first["imgUrl"];
 
-              swiper.addAll(navigatorList);
+              // swiper.addAll(navigatorList);设置这个会导致 错误
+              //  The following assertion was thrown building NotificationListener<ScrollNotification>:
+              // 'package:flutter/src/widgets/scroll_controller.dart': Failed assertion: line 110 pos 12:
+              //  '_positions.isNotEmpty
+              // 调整方法如下
+              List swiperList = List.from(swiper)
+                ..addAll(
+                    (snapshot.data['data']['findIntegralConsume'] as List));
+
               navigatorList.addAll(navigatorList2);
               print('navigatorList === ${navigatorList.length}');
 
               List<Map> recommentList = navigatorList;
+              List<Map> navigatorList3 = recommentList;
+              navigatorList3.addAll(navigatorList2);
 
               return Column(
                 children: <Widget>[
                   SwiperDiy(
-                    swiperDataList: swiper,
+                    swiperDataList: swiperList,
                   ),
                   TopNavigator(
                     navigatorList: navigatorList,
@@ -80,14 +100,19 @@ class _HomePageState extends State<HomePage>
                   AdBanner(
                     adPicture: adPicture,
                   ),
-                  // LeaderPhone(
-                  //   leaderImage: leaderImg,
-                  //   leaderPhone: leaderPhone,
-                  // )
+                  LeaderPhone(
+                    leaderImage: leaderImg,
+                    leaderPhone: leaderPhone,
+                  ),
                   Recommend(
                     recommendList: recommentList,
                   ),
-                  FlootTitle()
+                  FlootTitle(
+                    picture_address: floor1TitleImgUrl,
+                  ),
+                  FloorConent(
+                    floorGoodsList: navigatorList3,
+                  )
                 ],
               );
             } else {
@@ -201,19 +226,34 @@ class LeaderPhone extends StatelessWidget {
     return Container(
       child: InkWell(
         onTap: _launchPhone,
-        child: Image.network(leaderImage),
+        child: Stack(
+          alignment: Alignment.center, // 设置里面空间进行叠层
+          children: <Widget>[
+            Image.network(leaderImage),
+            Container(
+                color: Colors.black12,
+                width: ScreenUtil().setWidth(400),
+                height: ScreenUtil().setHeight(100),
+                child: Center(
+                  child: Text(
+                    "请拨打电话 ${leaderPhone}",
+                    style: TextStyle(color: Colors.red, fontSize: 16),
+                  ),
+                ))
+          ],
+        ),
       ),
     );
   }
 
   _launchPhone() async {
     String url = 'tel:' + leaderPhone;
-
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw '不能打电话';
-    }
+    getHomePage_hotBel();
+    // if (await canLaunch(url)) {
+    //   await launch(url);
+    // } else {
+    //   throw '不能打电话';
+    // }
   }
 }
 
@@ -259,13 +299,16 @@ class Recommend extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Image.network(recommendList[index]['imgUrl']),
-            Text('￥${recommendList[index]['title']}'),
+            Text(
+              '￥${recommendList[index]['title']}',
+              style: TextStyle(fontSize: 13),
+            ),
             Text(
               '￥${recommendList[index]['title']}',
               style: TextStyle(
-                decoration: TextDecoration.lineThrough, //删除线
-                color: Colors.grey,
-              ),
+                  decoration: TextDecoration.lineThrough, //删除线
+                  color: Colors.grey,
+                  fontSize: 12),
             )
           ],
         ),
@@ -314,11 +357,17 @@ class FlootTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      child: Image.network(picture_address),
+      child: InkWell(
+        onTap: () {
+          print('FlootTitle');
+        },
+        child: Image.network(picture_address),
+      ),
     );
   }
 }
 
+/// 楼层内容
 class FloorConent extends StatelessWidget {
   final List floorGoodsList;
 
@@ -364,10 +413,30 @@ class FloorConent extends StatelessWidget {
       width: ScreenUtil().setWidth(375),
       child: InkWell(
         onTap: () {
-          print('打印了');
+          print('_goodsItem打印了 = ${_goodsItem}');
         },
         child: Image.network(goods['imgUrl']),
       ),
+    );
+  }
+}
+
+class HotGoods extends StatefulWidget {
+  _HotGoodsState createState() => _HotGoodsState();
+}
+
+class _HotGoodsState extends State<HotGoods> {
+  void initState() {
+    super.initState();
+    getHomePage_hotBel().then((value) {
+      print(value);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text('我是火爆专区'),
     );
   }
 }

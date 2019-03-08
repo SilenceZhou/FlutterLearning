@@ -8,4 +8,9 @@ const serviecePath = {
 
 const baseUrl = 'https://appbg.lcfarm.com/';
 
-const adInfoUrl = 'api/mediaAnnouncement/getAdInfo.htm'; //商品首页信息
+/// 商品首页信息
+const adInfoUrl = 'api/mediaAnnouncement/getAdInfo.htm';
+
+/// 火爆专区
+const hotBel =
+    'http://test.baixingliangfan.cn/baixing/wxmini/homePageBelowConten';
