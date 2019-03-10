@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:io';
 import '../config/service_url.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class HomePage extends StatefulWidget {
   final Widget child;
@@ -29,8 +28,6 @@ class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   int page = 1;
   List<Map> hotGoodsList = [];
-
-  GlobalKey<RefreshFooterState> _footerKey =new GlobalKey<RefreshFooterState>()
   @override
   bool get wantKeepAlive => true;
 
@@ -59,99 +56,77 @@ class _HomePageState extends State<HomePage>
         title: Text('首页'),
       ),
       // 异步请求在渲染，不需要改变状态
-      body: FutureBuilder(
-        // 获取数据
-        future: getHomePageContent(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            // 有值就返回true
-            // var data = json.decode(snapshot.data.toString());
-            // cast是什么意思？？？
-            List<Map> swiper =
-                (snapshot.data['data']['homeBanner'] as List).cast();
-            List<Map> navigatorList =
-                (snapshot.data['data']['findBanner'] as List).cast();
-            List<Map> navigatorList2 =
-                (snapshot.data['data']['findIntegralConsume'] as List).cast();
-            String adPicture = navigatorList.first['imgUrl'];
+      body: SingleChildScrollView(
+        child: FutureBuilder(
+          // 获取数据
+          future: getHomePageContent(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              // 有值就返回true
+              // var data = json.decode(snapshot.data.toString());
+              // cast是什么意思？？？
+              List<Map> swiper =
+                  (snapshot.data['data']['homeBanner'] as List).cast();
+              List<Map> navigatorList =
+                  (snapshot.data['data']['findBanner'] as List).cast();
+              List<Map> navigatorList2 =
+                  (snapshot.data['data']['findIntegralConsume'] as List).cast();
+              String adPicture = navigatorList.first['imgUrl'];
 
-            String leaderImg = navigatorList.first['imgUrl'];
-            String leaderPhone = '13266584039';
-            String floor1TitleImgUrl = navigatorList.first["imgUrl"];
+              String leaderImg = navigatorList.first['imgUrl'];
+              String leaderPhone = '13266584039';
+              String floor1TitleImgUrl = navigatorList.first["imgUrl"];
 
-            // swiper.addAll(navigatorList);设置这个会导致 错误
-            //  The following assertion was thrown building NotificationListener<ScrollNotification>:
-            // 'package:flutter/src/widgets/scroll_controller.dart': Failed assertion: line 110 pos 12:
-            //  '_positions.isNotEmpty
-            // 调整方法如下
-            List swiperList = List.from(swiper)
-              ..addAll((snapshot.data['data']['findIntegralConsume'] as List));
+              // swiper.addAll(navigatorList);设置这个会导致 错误
+              //  The following assertion was thrown building NotificationListener<ScrollNotification>:
+              // 'package:flutter/src/widgets/scroll_controller.dart': Failed assertion: line 110 pos 12:
+              //  '_positions.isNotEmpty
+              // 调整方法如下
+              List swiperList = List.from(swiper)
+                ..addAll(
+                    (snapshot.data['data']['findIntegralConsume'] as List));
 
-            navigatorList.addAll(navigatorList2);
-            print('navigatorList === ${navigatorList.length}');
+              navigatorList.addAll(navigatorList2);
+              print('navigatorList === ${navigatorList.length}');
 
-            List<Map> recommentList = navigatorList;
-            List<Map> navigatorList3 = recommentList;
-            navigatorList3.addAll(navigatorList2);
+              List<Map> recommentList = navigatorList;
+              List<Map> navigatorList3 = recommentList;
+              navigatorList3.addAll(navigatorList2);
 
-            return EasyRefresh(
-
-                /// 自定义
-                refreshFooter: ClassicsFooter(
-                  key: _footerKey,
-                  bgColor: Colors.white,
-                  textColor: Colors.pink,
-                  moreInfoColor: Colors.pink,
-                  showMore: true,
-                  noMoreText: '',
-                  moreInfo: '加载中',
-                  loadReadyText: '上拉加载',
-                ),
-                child: ListView(
-                  children: <Widget>[
-                    SwiperDiy(
-                      swiperDataList: swiperList,
-                    ),
-                    TopNavigator(
-                      navigatorList: navigatorList,
-                    ),
-                    AdBanner(
-                      adPicture: adPicture,
-                    ),
-                    LeaderPhone(
-                      leaderImage: leaderImg,
-                      leaderPhone: leaderPhone,
-                    ),
-                    Recommend(
-                      recommendList: recommentList,
-                    ),
-                    FlootTitle(
-                      picture_address: floor1TitleImgUrl,
-                    ),
-                    FloorConent(
-                      floorGoodsList: navigatorList3,
-                    ),
-                    hotGods()
-                  ],
-                ),
-                loadMore: () async {
-                  print('开始记载更多........');
-                  page++;
-                  var formData = {'page': page};
-                  request(hotBel, formData: formData).then((value) {
-                    var data = json.decode(value.toString());
-                    List<Map> newGoodsList = (data['data'] as List).cast();
-                    setState(() {
-                      hotGoodsList.addAll(newGoodsList);
-                    });
-                  });
-                });
-          } else {
-            return Center(
-              child: Text('加载中。。。。'),
-            );
-          }
-        },
+              return Column(
+                children: <Widget>[
+                  SwiperDiy(
+                    swiperDataList: swiperList,
+                  ),
+                  TopNavigator(
+                    navigatorList: navigatorList,
+                  ),
+                  AdBanner(
+                    adPicture: adPicture,
+                  ),
+                  LeaderPhone(
+                    leaderImage: leaderImg,
+                    leaderPhone: leaderPhone,
+                  ),
+                  Recommend(
+                    recommendList: recommentList,
+                  ),
+                  FlootTitle(
+                    picture_address: floor1TitleImgUrl,
+                  ),
+                  FloorConent(
+                    floorGoodsList: navigatorList3,
+                  ),
+                  hotGods()
+                ],
+              );
+            } else {
+              return Center(
+                child: Text('加载中。。。。'),
+              );
+            }
+          },
+        ),
       ),
     );
   }

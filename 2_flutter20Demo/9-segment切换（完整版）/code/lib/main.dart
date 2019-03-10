@@ -44,7 +44,7 @@ class _KeepAliveDomeState extends State<KeepAliveDome>
       appBar: AppBar(
         title: Text('Keep Alive Demo'),
         bottom: TabBar(
-          // controller: _controller,
+          controller: _controller,
           tabs: <Widget>[
             Tab(
               icon: Icon(Icons.directions_car),
@@ -59,7 +59,7 @@ class _KeepAliveDomeState extends State<KeepAliveDome>
         ),
       ),
       body: TabBarView(
-        // controller: _controller,
+        controller: _controller,
         children: <Widget>[
           MyHomePage(),
           MyHomePage(),
