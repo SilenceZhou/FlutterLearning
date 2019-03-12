@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../authenticationBloc/Authentication.dart';
 import '../login/login.dart';
 
-
 class LoginForm extends StatefulWidget {
-
   final LoginBloc loginBloc;
   final AuthenticationBloc authenticationBloc;
 
@@ -25,8 +23,7 @@ class _LoginFormState extends State<LoginForm> {
   LoginBloc get _loginBloc => widget.loginBloc;
 
   void _onLoginBtnPressed() {
-
-  print('登陆操作');
+    print('登陆操作');
 
     _loginBloc.dispatch(LoginButtonPressed(
       username: _usernameController.text,
@@ -46,7 +43,6 @@ class _LoginFormState extends State<LoginForm> {
     // BlocBuilder是一个Flutter小部件，它需要一个Bloc和一个构建器函数。
     // BlocBuilder处理构建窗口小部件以响应新状态。
     // BlocBuilder与StreamBuilder非常相似，但它有一个更简单的API，可以减少所需的样板代码量和各种性能优化。
-
     return BlocBuilder<LoginEvent, LoginState>(
         bloc: _loginBloc,
         builder: (
@@ -77,7 +73,8 @@ class _LoginFormState extends State<LoginForm> {
                   obscureText: true,
                 ),
                 RaisedButton(
-                  onPressed: (state is! LoginStateLoading) ? _onLoginBtnPressed : null,
+                  onPressed:
+                      (state is! LoginStateLoading) ? _onLoginBtnPressed : null,
                   child: Text('Login'),
                 ),
                 Container(

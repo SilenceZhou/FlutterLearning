@@ -8,17 +8,16 @@ class LoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     ScreenUtil.instance = ScreenUtil(width: 375, height: 675)..init(context);
     print('设备的高${ScreenUtil.screenHeight}');
     print('设备的宽度${ScreenUtil.screenWidth}');
     return Container(
-        width: ScreenUtil.screenWidth,
-        height: ScreenUtil.screenHeight,
-        color: Colors.pinkAccent,
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
+      width: ScreenUtil.screenWidth,
+      height: ScreenUtil.screenHeight,
+      color: Colors.pinkAccent,
+      child: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
   }
 }

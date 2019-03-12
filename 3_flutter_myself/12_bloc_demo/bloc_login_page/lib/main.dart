@@ -9,8 +9,7 @@ import './splash/splash.dart';
 import './login/login.dart';
 import 'user_repository.dart';
 
-
-
+/// 监听所有bloc中的事件
 class SimpleBlocDelegate extends BlocDelegate {
   @override
   void onTransition(Transition transition) {
@@ -25,17 +24,15 @@ class SimpleBlocDelegate extends BlocDelegate {
 
 void main() {
   BlocSupervisor().delegate = SimpleBlocDelegate();
+
   /// TODO:这个地方一定要传递参数
-  runApp(MyApp(userRepository: UserRepository(),));
+  runApp(MyApp(userRepository: UserRepository()));
 }
 
 class MyApp extends StatefulWidget {
   final UserRepository userRepository;
 
-  MyApp({
-    Key key,
-    @required this.userRepository
-  }) : super(key: key);
+  MyApp({Key key, @required this.userRepository}) : super(key: key);
 
   _MyAppState createState() => _MyAppState();
 }
@@ -60,32 +57,31 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
-    /// TODO: 一定要用这个把主入口包起来 BlocProvider<AuthenticationBloc>
+    /// TODO: 一定要用这个把主入口(MaterialApp)包起来 BlocProvider<AuthenticationBloc>
+    /// 这样在别的子树中就能通过 BlocProvider.of<AuthenticationBloc>(context) 获取状态了
     return BlocProvider<AuthenticationBloc>(
       bloc: _authenticationBloc,
       child: MaterialApp(
-      home: BlocBuilder<AuthenticationEvent, AuthenticationState>(
-        bloc: _authenticationBloc,
-        builder: (BuildContext context, AuthenticationState state) {
-          if (state is AuthenticationUninitialized) {
-            return SplashPage();
-          }
-          if (state is AuthenticationAuthenticated) {
-            return HomePage();
-          }
+        home: BlocBuilder<AuthenticationEvent, AuthenticationState>(
+          bloc: _authenticationBloc,
+          builder: (BuildContext context, AuthenticationState state) {
+            if (state is AuthenticationUninitialized) {
+              return SplashPage();
+            }
+            if (state is AuthenticationAuthenticated) {
+              return HomePage();
+            }
 
-          if (state is AuthenticationUnauthenticated) {
-            return LoginPage(userRepository: _userRepository);
-          }
+            if (state is AuthenticationUnauthenticated) {
+              return LoginPage(userRepository: _userRepository);
+            }
 
-          if (state is AuthenticationLoading) {
-            return LoadingIndicator();
-          }
-        },
-      ),
+            if (state is AuthenticationLoading) {
+              return LoadingIndicator();
+            }
+          },
+        ),
       ),
     );
-
   }
 }

@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
     /// 让homepage能够访问AuthenticationBloc
     final AuthenticationBloc _authenticationBloc =
         BlocProvider.of<AuthenticationBloc>(context);
-        print('_authenticationBloc = $_authenticationBloc');
+    print('_authenticationBloc = $_authenticationBloc');
 
     return Scaffold(
       appBar: AppBar(
