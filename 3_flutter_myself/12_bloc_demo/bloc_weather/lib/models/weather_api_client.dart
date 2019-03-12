@@ -1,3 +1,9 @@
+/// version:0.0.1
+/// author:SileceZhou
+/// Company: Lcfarm
+/// Date:2019:03:12
+/// Github:https://github.com/SilenceZhou
+
 import 'dart:convert';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;

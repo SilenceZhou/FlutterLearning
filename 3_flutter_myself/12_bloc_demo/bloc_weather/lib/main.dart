@@ -1,3 +1,10 @@
+/// version:0.0.1
+/// author:SileceZhou
+/// Company: Lcfarm
+/// Date:2019:03:12
+/// Github:https://github.com/SilenceZhou
+///
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
