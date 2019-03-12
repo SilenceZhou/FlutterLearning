@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../authenticationBloc/bloc.dart';
-import '../login_bloc/login_bloc_header.dart';
+import '../authenticationBloc/Authentication.dart';
+import '../login/login.dart';
+
 
 class LoginForm extends StatefulWidget {
-  final Widget child;
 
   final LoginBloc loginBloc;
   final AuthenticationBloc authenticationBloc;
 
   LoginForm({
     Key key,
-    this.child,
-    this.loginBloc,
-    this.authenticationBloc,
+    @required this.loginBloc,
+    @required this.authenticationBloc,
   }) : super(key: key);
 
   _LoginFormState createState() => _LoginFormState();
@@ -26,6 +25,9 @@ class _LoginFormState extends State<LoginForm> {
   LoginBloc get _loginBloc => widget.loginBloc;
 
   void _onLoginBtnPressed() {
+
+  print('登陆操作');
+
     _loginBloc.dispatch(LoginButtonPressed(
       username: _usernameController.text,
       password: _passwordController.text,
@@ -71,13 +73,11 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'password'),
-                  controller: _usernameController,
+                  controller: _passwordController,
                   obscureText: true,
                 ),
                 RaisedButton(
-                  onPressed: () {
-                    state is! LoginStateLoading ? _onLoginBtnPressed : null;
-                  },
+                  onPressed: (state is! LoginStateLoading) ? _onLoginBtnPressed : null,
                   child: Text('Login'),
                 ),
                 Container(

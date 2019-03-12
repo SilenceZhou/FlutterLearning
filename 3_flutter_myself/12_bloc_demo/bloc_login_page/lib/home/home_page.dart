@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../authenticationBloc/bloc.dart';
+import '../authenticationBloc/Authentication.dart';
 
 class HomePage extends StatelessWidget {
   final Widget child;
@@ -13,6 +13,7 @@ class HomePage extends StatelessWidget {
     /// 让homepage能够访问AuthenticationBloc
     final AuthenticationBloc _authenticationBloc =
         BlocProvider.of<AuthenticationBloc>(context);
+        print('_authenticationBloc = $_authenticationBloc');
 
     return Scaffold(
       appBar: AppBar(

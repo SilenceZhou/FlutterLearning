@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import './login_bloc_header.dart';
+import './login.dart';
 import 'package:meta/meta.dart';
 import '../user_repository.dart';
-import '../authenticationBloc/bloc.dart';
+import '../authenticationBloc/Authentication.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   /// 这个地方不能用内部变量

@@ -1,63 +1,72 @@
-import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import './authenticationBloc/bloc.dart';
-import './login_bloc/login_bloc_header.dart';
-import './pages/home_page.dart';
-import './pages/loading_indicator.dart';
-import './pages/login_form.dart';
-import './pages/login_page.dart';
-import './pages/splash_page.dart';
+
+import './authenticationBloc/Authentication.dart';
+import './home/home.dart';
+import './common/common.dart';
+import './splash/splash.dart';
+import './login/login.dart';
 import 'user_repository.dart';
+
+
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
   void onTransition(Transition transition) {
     print(transition);
   }
+
+  @override
+  void onError(Object error, StackTrace stacktrace) {
+    print(error);
+  }
 }
 
 void main() {
   BlocSupervisor().delegate = SimpleBlocDelegate();
-  runApp(MyApp());
+  /// TODO:这个地方一定要传递参数
+  runApp(MyApp(userRepository: UserRepository(),));
 }
-// void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   final UserRepository userRepository;
-  final Widget child;
 
   MyApp({
     Key key,
-    this.child,
-    this.userRepository,
+    @required this.userRepository
   }) : super(key: key);
 
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  AuthenticationBloc authenticationBloc;
-  UserRepository get userRepository => widget.userRepository;
+  AuthenticationBloc _authenticationBloc;
+  UserRepository get _userRepository => widget.userRepository;
 
   @override
   void initState() {
-    authenticationBloc = AuthenticationBloc(userRepository: userRepository);
-    authenticationBloc.dispatch(AppStarted());
+    print('userRepository = ${_userRepository}');
+    _authenticationBloc = AuthenticationBloc(userRepository: _userRepository);
+    _authenticationBloc.dispatch(AppStarted());
     super.initState();
   }
 
   @override
   void dispose() {
-    authenticationBloc.dispose();
+    _authenticationBloc.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+
+    /// TODO: 一定要用这个把主入口包起来 BlocProvider<AuthenticationBloc>
+    return BlocProvider<AuthenticationBloc>(
+      bloc: _authenticationBloc,
+      child: MaterialApp(
       home: BlocBuilder<AuthenticationEvent, AuthenticationState>(
-        bloc: authenticationBloc,
+        bloc: _authenticationBloc,
         builder: (BuildContext context, AuthenticationState state) {
           if (state is AuthenticationUninitialized) {
             return SplashPage();
@@ -67,7 +76,7 @@ class _MyAppState extends State<MyApp> {
           }
 
           if (state is AuthenticationUnauthenticated) {
-            return LoginPage(userRepository: userRepository);
+            return LoginPage(userRepository: _userRepository);
           }
 
           if (state is AuthenticationLoading) {
@@ -75,6 +84,8 @@ class _MyAppState extends State<MyApp> {
           }
         },
       ),
+      ),
     );
+
   }
 }
