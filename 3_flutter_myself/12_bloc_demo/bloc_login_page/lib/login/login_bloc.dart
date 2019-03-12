@@ -1,3 +1,9 @@
+/// version:0.0.1
+/// author:SileceZhou
+/// Company: Lcfarm
+/// Date:2019:03:12
+/// Github:https://github.com/SilenceZhou
+
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import './login.dart';
@@ -5,6 +11,7 @@ import 'package:meta/meta.dart';
 import '../user_repository.dart';
 import '../authenticationBloc/Authentication.dart';
 
+/// 登陆操作状态
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   /// 这个地方不能用内部变量
   /// LoginBloc依赖于UserRepository，以便在给定用户名和密码的情况下对用户进行身份验证。
@@ -35,7 +42,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
 
         /// 登陆初始化
-        authenticationBloc.dispatch(LoginedIn(token: token));
+        authenticationBloc.dispatch(LoggedIn(token: token));
         yield LoginStateInitial();
       } catch (error) {
         /// 登陆失败

@@ -1,8 +1,19 @@
+/// version:0.0.1
+/// author:SileceZhou
+/// Company: Lcfarm
+/// Date:2019:03:12
+/// Github:https://github.com/SilenceZhou
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../authenticationBloc/Authentication.dart';
 import '../login/login.dart';
 
+/// 该类为登陆表单，单独出来便于用户时间响应
+///
+/// 备注：因为LoginForm必须处理用户输入（Login Button Pressed）并且需要一些业务逻辑（获取给定用户名/密码的令牌），
+/// 我们需要创建一个LoginBloc
+///
 class LoginForm extends StatefulWidget {
   final LoginBloc loginBloc;
   final AuthenticationBloc authenticationBloc;

@@ -1,3 +1,9 @@
+/// version:0.0.1
+/// author:SileceZhou
+/// Company: Lcfarm
+/// Date:2019:03:12
+/// Github:https://github.com/SilenceZhou
+
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
@@ -11,7 +17,7 @@ class LoginStateInitial extends LoginState {
   toString() => 'LoginStateInitial';
 }
 
-// 验证平局loading态
+// 验证登陆loading态
 class LoginStateLoading extends LoginState {
   @override
   toString() => 'LoginStateLoading';

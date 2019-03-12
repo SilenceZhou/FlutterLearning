@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
           child: Text('logout'),
           onPressed: () {
             // 当用户按下注销按钮时，我们将LoggedOut事件分派给AuthenticationBloc。
-            _authenticationBloc.dispatch(LoginedOut());
+            _authenticationBloc.dispatch(Logout());
           },
         ),
       ),
