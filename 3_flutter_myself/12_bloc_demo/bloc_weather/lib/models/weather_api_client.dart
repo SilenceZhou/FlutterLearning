@@ -20,6 +20,7 @@ class WeatherApiClient {
     final locationUrl = '$baseUrl/api/location/search/?query=$city';
     final locationResponse = await this.httpClient.get(locationUrl);
 
+    /// 提前进行与判断，在正式项目里面需要做错误页面展示
     if (locationResponse.statusCode != 200) {
       throw Exception('error getting locationId for city');
     }
