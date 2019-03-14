@@ -1,0 +1,12 @@
+CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/FlutterPluginRegistrant
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../../my_flutter/.ios/Flutter/engine" "${PODS_ROOT}/FirebaseAnalytics/Frameworks/frameworks" "${PODS_ROOT}/FirebaseInstanceID/Frameworks" "${PODS_ROOT}/FirebaseMLCommon/Frameworks" "${PODS_ROOT}/FirebaseMLVision/Frameworks" "${PODS_ROOT}/GoogleAppMeasurement/Frameworks" "${PODS_ROOT}/GoogleInterchangeUtilities/Frameworks/frameworks" "${PODS_ROOT}/GoogleMobileVision/Detector/Frameworks" "${PODS_ROOT}/GoogleSymbolUtilities/Frameworks/frameworks" "${PODS_ROOT}/GoogleUtilities/Frameworks/frameworks"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/FlutterPluginRegistrant" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Firebase" "${PODS_ROOT}/Headers/Public/FirebaseCore" "${PODS_ROOT}/Headers/Public/FlutterPluginRegistrant" "${PODS_ROOT}/Headers/Public/GTMSessionFetcher" "${PODS_ROOT}/Headers/Public/GoogleAPIClientForREST" "${PODS_ROOT}/Headers/Public/GoogleToolboxForMac" "${PODS_ROOT}/Headers/Public/Protobuf" "${PODS_ROOT}/Headers/Public/firebase_ml_vision" "${PODS_ROOT}/Headers/Public/image_picker" "${PODS_ROOT}/Headers/Public/nanopb"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_ROOT = ${SRCROOT}
+PODS_TARGET_SRCROOT = ${PODS_ROOT}/../../my_flutter/.ios/Flutter/FlutterPluginRegistrant
+PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.${PRODUCT_NAME:rfc1034identifier}
+SKIP_INSTALL = YES
+#include "/Users/silencezhou/Desktop/FlutterML/my_flutter/.ios/Flutter/Generated.xcconfig"
+#include "/Users/silencezhou/Desktop/FlutterML/my_flutter/.ios/Flutter/Generated.xcconfig"
