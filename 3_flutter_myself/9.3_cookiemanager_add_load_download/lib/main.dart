@@ -8,6 +8,8 @@ import 'dart:convert';
 import 'common_tools.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:typed_data';
+import 'package:flutter/services.dart' show rootBundle; // 加载图片
 
 void main() => runApp(MyApp());
 
@@ -152,12 +154,12 @@ class _MyAppState extends State<MyApp> {
     Dio dio = Dio();
     dio.options.baseUrl = njqbaseUrl;
 
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (client) {
-      client.findProxy = (uri) {
-        return "PROXY 10.1.13.15:8888";
-      };
-    };
+    // (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+    //     (client) {
+    //   client.findProxy = (uri) {
+    //     return "PROXY 10.1.13.15:8888";
+    //   };
+    // };
 
     /// 第一种
     /// 参考链接1：https://medium.com/@nitishk72/flutter-uploading-image-to-server-aec76876b9e1
@@ -197,15 +199,29 @@ class _MyAppState extends State<MyApp> {
     });
 
     /// 第四种：相对路径不行 ---- 已经给作者提issue
+
     FormData formData4 = FormData.from({
       "reason": "上传图片原因",
       "idCardPositive": UploadFileInfo(File("../images/111.png"), "111.png"),
       "idCardNegative": UploadFileInfo(File("../images/2222.png"), "2222.png")
     });
 
+    /// 第五种：用UploadFileInfo.fromBytes上传图片
+    ByteData img1_bytes = await rootBundle.load('images/111.png');
+    ByteData img2_bytes = await rootBundle.load('images/2222.png');
+    final Uint8List img1_unit8List = img1_bytes.buffer.asUint8List();
+    final Uint8List img2_unit8List = img2_bytes.buffer.asUint8List();
+
+    FormData formData5 = FormData.from({
+      "reason": "上传图片原因",
+      "idCardPositive": UploadFileInfo.fromBytes(img1_unit8List, "111.png"),
+      "idCardNegative": UploadFileInfo.fromBytes(img2_unit8List, "2222.png")
+    });
+    print('=================formData5 = $formData5');
+
     Response response = await dio.post(
       newUploadUserChangeCardInfo,
-      data: data,
+      data: formData5,
       options: option,
       onSendProgress: (received, total) {
         /// 打印进度
@@ -273,12 +289,12 @@ class _MyAppState extends State<MyApp> {
     Dio dio = Dio();
     dio.options.baseUrl = njqbaseUrl;
 
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (client) {
-      client.findProxy = (uri) {
-        return "PROXY 10.1.13.15:8888";
-      };
-    };
+    // (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+    //     (client) {
+    //   client.findProxy = (uri) {
+    //     return "PROXY 10.1.13.15:8888";
+    //   };
+    // };
 
     Response response = await dio.post(loginUrl,
         data: {

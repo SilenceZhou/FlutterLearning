@@ -15,9 +15,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dio: ^2.0.14
+  dio: ^2.1.0
   crypto: ^2.0.6 #加密
   cookie_jar: ^1.0.0 #cookie保存
+  path_provider: ^0.5.0+1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
