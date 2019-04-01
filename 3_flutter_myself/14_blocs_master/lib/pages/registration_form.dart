@@ -70,6 +70,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
     return Form(
       child: Column(
         children: <Widget>[
+          /// 每个 TextField 都包含在一个StreamBuilder<String> 中，
+          /// 以便能够响应验证过程的任何结果（见代码中的errorText：snapshot.error）
           StreamBuilder<String>(
               stream: _registrationFormBloc.email,
               builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
@@ -109,6 +111,10 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   onChanged: _registrationFormBloc.onRetypePasswordChanged,
                 );
               }),
+
+          /// RegisterButton 同样也包含在一个 StreamBuilder<bool> 中
+          /// 如果 _registrationFormBloc.registerValid 抛出了值，onPressed 将在用户点击时对抛出的值进行后续处理
+          /// 如果没有值抛出，onPressed 方法被指定为 null，按钮会被置为不可用状态
           StreamBuilder<bool>(
               stream: _registrationFormBloc.registerValid,
               builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -116,6 +122,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   child: Text('Register'),
                   onPressed: (snapshot.hasData && snapshot.data == true)
                       ? () {
+                          /// 触发事件 -- 在build里面的bloc接收事件输出的状态
                           _registrationBloc.emitEvent(RegistrationEvent(
                               event: RegistrationEventType.working,
                               email: _emailController.text,

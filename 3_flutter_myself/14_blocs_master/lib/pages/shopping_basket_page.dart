@@ -14,26 +14,29 @@ class ShoppingBasketPage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Shopping Basket'),
         ),
+
+        /// 这个页面和 ShoppingPage 非常相似，只是其 StreamBuilder
+        /// 监听对象是 ShoppingBloc 提供的 _shoppingBasket stream 的变更结果
         body: Container(
           child: StreamBuilder<List<ShoppingItem>>(
-          stream: shoppingBloc.shoppingBasket,
-          builder: (BuildContext context,
-              AsyncSnapshot<List<ShoppingItem>> snapshot) {
-            if (!snapshot.hasData) {
-              return Container();
-            }
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 1.0,
-              ),
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ShoppingItemWidget(shoppingItem: snapshot.data[index]);
-              },
-            );
-          },
-        ),
+            stream: shoppingBloc.shoppingBasket,
+            builder: (BuildContext context,
+                AsyncSnapshot<List<ShoppingItem>> snapshot) {
+              if (!snapshot.hasData) {
+                return Container();
+              }
+              return GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 1.0,
+                ),
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ShoppingItemWidget(shoppingItem: snapshot.data[index]);
+                },
+              );
+            },
+          ),
         ),
       ),
     );

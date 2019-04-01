@@ -18,6 +18,7 @@ import 'package:rxdart/rxdart.dart';
 class RegistrationFormBloc extends Object
     with EmailValidator, PasswordValidator
     implements BlocBase {
+  /// 还将最后发送的事件发送给刚刚订阅的监听器。
   final BehaviorSubject<String> _emailController = BehaviorSubject<String>();
   final BehaviorSubject<String> _passwordController = BehaviorSubject<String>();
   final BehaviorSubject<String> _passwordConfirmController =
@@ -34,16 +35,19 @@ class RegistrationFormBloc extends Object
   //
   // Validators
   //
+  /// 为什么要用 stream.transform()?
+  /// stream 会抛出用户输入的内容，同时再作为 Observable.combineLatest3() 的一个输入stream
   Stream<String> get email => _emailController.stream.transform(validateEmail);
   Stream<String> get password =>
       _passwordController.stream.transform(validatePassword);
   Stream<String> get confirmPassword => _passwordConfirmController.stream
           .transform(validatePassword)
           .doOnData((String c) {
+        /// 如果接受密码（在验证规则之后），我们需要确保密码和重新输入的密码匹配
         // If the password is accepted (after validation of the rules)
         // we need to ensure both password and retyped password match
         if (0 != _passwordController.value.compareTo(c)) {
-          // If they do not match, add an error
+          // If they do not match, add an e rror
           _passwordConfirmController.addError("No Match");
         }
       });
@@ -52,7 +56,11 @@ class RegistrationFormBloc extends Object
   // Registration button
   /// 同时还提供了 1 个 Stream<bool>，作用是根据全部表单项的验证结果，控制 RaisedButton 是否可用(enable/disabe)
   Stream<bool> get registerValid => Observable.combineLatest3(
-      email, password, confirmPassword, (e, p, c) => true);
+        email,
+        password,
+        confirmPassword,
+        (e, p, c) => true,
+      );
 
   @override
   void dispose() {

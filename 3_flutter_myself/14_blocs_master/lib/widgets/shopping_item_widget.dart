@@ -27,6 +27,8 @@ class _ShoppingItemWidgetState extends State<ShoppingItemWidget> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
+    /// ?????????“initState??”??????
+    /// ?????????????????????“didChangeDependencies??”
     // As the context should not be used in the "initState()" method,
     // prefer using the "didChangeDependencies()" when you need
     // to refer to the context at initialization time
@@ -52,13 +54,19 @@ class _ShoppingItemWidgetState extends State<ShoppingItemWidget> {
   // This routine is reponsible for creating the links
   void _initBloc() {
     // Create an instance of the ShoppingItemBloc
+    /// ???? ShoppingItemBloc ?????????? ID ????? BLoC ??
     _bloc = ShoppingItemBloc(widget.shoppingItem);
 
-    // Retrieve the BLoC that handles the Shopping Basket content 
+    // Retrieve the BLoC that handles the Shopping Basket content
+    // ??????????BLoC
+    ///  ???? ShoppingBasket ??????????????? BLoC
+
     _shoppingBloc = BlocProvider.of<ShoppingBloc>(context);
 
     // Simple pipe that transfers the content of the shopping
     // basket to the ShoppingItemBloc
+    /// ????????????????ShoppingItemBloc
+    ///  ?? ShoppingItemBloc ????????????????
     _subscription = _shoppingBloc.shoppingBasket.listen(_bloc.shoppingBasket);
   }
 
@@ -72,6 +80,7 @@ class _ShoppingItemWidgetState extends State<ShoppingItemWidget> {
       stream: _bloc.isInShoppingBasket,
       initialData: false,
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        /// ???????????????????(??/??)
         return snapshot.data
             ? _buildRemoveFromShoppingBasket()
             : _buildAddToShoppingBasket();
@@ -79,19 +88,19 @@ class _ShoppingItemWidgetState extends State<ShoppingItemWidget> {
     );
   }
 
-  Widget _buildAddToShoppingBasket(){
+  Widget _buildAddToShoppingBasket() {
     return RaisedButton(
       child: Text('Add...'),
-      onPressed: (){
+      onPressed: () {
         _shoppingBloc.addToShoppingBasket(widget.shoppingItem);
       },
     );
   }
 
-  Widget _buildRemoveFromShoppingBasket(){
+  Widget _buildRemoveFromShoppingBasket() {
     return RaisedButton(
       child: Text('Remove...'),
-      onPressed: (){
+      onPressed: () {
         _shoppingBloc.removeFromShoppingBasket(widget.shoppingItem);
       },
     );

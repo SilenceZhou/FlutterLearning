@@ -50,7 +50,12 @@ class ShoppingBloc implements BlocBase {
     _postActionOnBasket();
   }
 
+  /// _postActionOnBasket() 方法：每次我们将商品添加到购物篮或移除时，
+  /// 都需要「刷新」 _shoppingBasketController 控制的 stream 内容，
+  /// 监听该 stream 的组件就会收到变更通知，以便组件自身进行刷新或重建(refresh/rebuild)
   void _postActionOnBasket() {
+    /// 使用新内容提供购物篮流
+    /// 任何额外的处理，如计算篮子数量的总价格，篮子的一部分......
     _shoppingBasketController.sink.add(_shoppingBasket.toList());
     _shoppingBasketSizeController.sink.add(_shoppingBasket.length);
     _computeShoppingBasketTotalPrice();
@@ -66,7 +71,7 @@ class ShoppingBloc implements BlocBase {
     _shoppingBasketPriceController.sink.add(total);
   }
 
-  //
+  /// 生成一系列购物项目。通常这应该来自对服务器的调用，但对于此示例，我们只是模拟
   // Generates a series of Shopping Items
   // Normally this should come from a call to the server
   // but for this sample, we simply simulate

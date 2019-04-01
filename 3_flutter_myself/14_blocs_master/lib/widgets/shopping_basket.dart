@@ -3,6 +3,9 @@ import 'package:blocs/blocs/shopping/shopping_bloc.dart';
 import 'package:blocs/pages/shopping_basket_page.dart';
 import 'package:flutter/material.dart';
 
+/// 显示购物篮中商品的数量
+/// 当点击时，跳转到 ShoppingBasket 页面
+
 class ShoppingBasket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
