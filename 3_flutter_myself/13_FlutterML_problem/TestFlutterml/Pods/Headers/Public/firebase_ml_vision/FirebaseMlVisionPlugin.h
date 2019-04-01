@@ -1,0 +1,1 @@
+../../../../../my_flutter/.ios/Flutter/.symlinks/firebase_ml_vision/ios/Classes/FirebaseMlVisionPlugin.h
