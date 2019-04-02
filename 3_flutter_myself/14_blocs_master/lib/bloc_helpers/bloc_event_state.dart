@@ -27,6 +27,7 @@ abstract class BlocEventStateBase<BlocEvent, BlocState> implements BlocBase {
 
   ///
   /// External processing of the event
+  /// 事件的外部处理
   ///
   Stream<BlocState> eventHandler(BlocEvent event, BlocState currentState);
 

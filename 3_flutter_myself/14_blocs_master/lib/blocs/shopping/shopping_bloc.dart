@@ -6,23 +6,28 @@ import 'package:blocs/models/shopping_item.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ShoppingBloc implements BlocBase {
-  // List of all items, part of the shopping basket
+  /// List of all items, part of the shopping basket
+  /// 所有商品清单，购物篮的一部分
   Set<ShoppingItem> _shoppingBasket = Set<ShoppingItem>();
 
   // Stream to list of all possible items
+  /// 所有可能的项目列表Stream
   BehaviorSubject<List<ShoppingItem>> _itemsController =
       BehaviorSubject<List<ShoppingItem>>();
   Stream<List<ShoppingItem>> get items => _itemsController;
 
+  /// 数量
   BehaviorSubject<int> _shoppingBasketSizeController =
       BehaviorSubject<int>.seeded(0);
   Stream<int> get shoppingBasketSize => _shoppingBasketSizeController;
 
+  /// 价格
   BehaviorSubject<double> _shoppingBasketPriceController =
       BehaviorSubject<double>.seeded(0.0);
   Stream<double> get shoppingBasketTotalPrice => _shoppingBasketPriceController;
 
   // Stream to list the items part of the shopping basket
+  /// 以列出购物篮中的项目部分Stream
   BehaviorSubject<List<ShoppingItem>> _shoppingBasketController =
       BehaviorSubject<List<ShoppingItem>>.seeded(<ShoppingItem>[]);
   Stream<List<ShoppingItem>> get shoppingBasket => _shoppingBasketController;

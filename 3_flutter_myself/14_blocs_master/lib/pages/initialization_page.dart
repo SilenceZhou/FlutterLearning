@@ -10,6 +10,8 @@ class InitializationPage extends StatefulWidget {
 }
 
 class _InitializationPageState extends State<InitializationPage> {
+  /// ApplicationInitializationBloc 并不是任何组件都需要用到，
+  /// 所以只在一个 StatefulWidget 中初始化(实例化)了该 BLoC
   ApplicationInitializationBloc bloc;
 
   @override

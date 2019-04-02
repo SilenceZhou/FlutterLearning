@@ -6,6 +6,7 @@ import 'package:blocs/pages/authentication_page.dart';
 import 'package:blocs/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
+/// 中间跳转页面: DecisionPage
 class DecisionPage extends StatefulWidget {
   @override
   DecisionPageState createState() {
@@ -18,10 +19,13 @@ class DecisionPageState extends State<DecisionPage> {
 
   @override
   Widget build(BuildContext context) {
+    /// 获取对应的BLoC的时候用到
     AuthenticationBloc bloc = BlocProvider.of<AuthenticationBloc>(context);
     return BlocEventStateBuilder<AuthenticationState>(
         bloc: bloc,
         builder: (BuildContext context, AuthenticationState state) {
+          /// 防止死循环这种情况发生，我们需要将「最后一个」 AuthenticationState
+          /// 存起来，只有当新的 AuthenticationState 与已存的不一样时，我们才进行重定向处理；
           if (state != oldAuthenticationState) {
             oldAuthenticationState = state;
 
