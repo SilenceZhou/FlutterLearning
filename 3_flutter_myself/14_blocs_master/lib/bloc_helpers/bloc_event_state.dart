@@ -7,7 +7,10 @@ abstract class BlocEvent extends Object {}
 abstract class BlocState extends Object {}
 
 abstract class BlocEventStateBase<BlocEvent, BlocState> implements BlocBase {
+  /// PublishSubject:普通的广播StreamController,仅向监听器发送在订阅之后添加到Stream的事件
   PublishSubject<BlocEvent> _eventController = PublishSubject<BlocEvent>();
+
+  /// BehaviorSubject:与PublishSubject的主要区别在于BehaviorSubject还将最后发送的事件发送给刚刚订阅的监听器。
   BehaviorSubject<BlocState> _stateController = BehaviorSubject<BlocState>();
 
   ///
