@@ -34,13 +34,13 @@ class ExampleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GroupedListView<Group, String>(
       collection: [
+        Group("Test1", 5),
+        Group("Test1", 6),
         Group("Test1", 1),
         Group("Test2", 2),
         Group("Test1", 3),
         Group("Test1", 3),
         Group("Test1", 4),
-        Group("Test1", 5),
-        Group("Test1", 6),
       ],
       groupBy: (Group g) => g.groupName,
       listBuilder: (BuildContext context, Group g) =>

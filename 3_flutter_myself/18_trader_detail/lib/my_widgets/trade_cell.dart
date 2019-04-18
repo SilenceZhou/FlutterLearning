@@ -1,9 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-
-import 'package:trader_detail/models/trade_detail_model.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trader_detail/models/trade_detail_model.dart';
 
 class SectionRecord {
   int index;
@@ -36,16 +33,11 @@ class TradeCell extends StatefulWidget {
   _TradeCellState createState() => _TradeCellState();
 }
 
-// 正常高度为 70
-// 展开高度为 106
+/// 正常高度为 70 展开高度为 106
+/// 不用写高度，直接从上到下从左到右
 class _TradeCellState extends State<TradeCell> {
   Widget container = Container();
   SectionRecord _sectionRecord;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   Widget expandWidget() {
     if (_sectionRecord != null) {
@@ -104,35 +96,18 @@ class _TradeCellState extends State<TradeCell> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      /// 如何监听点击 开始点击 - 结束点击？？？？
       onTap: () {
         print('-----before ----- $_sectionRecord');
         setState(() {
           _sectionRecord = widget.tradeCellCallback(_sectionRecord);
-
-          // if (widget.index != _sectionRecord.index) {
-          //   _sectionRecord.expand = false;
-          // }
         });
         print('-----after ----- $_sectionRecord');
-        // if (tmpsectionRecord != null) return;
-        // if (tmpsectionRecord == _sectionRecord) {
-        //   _sectionRecord.expand = false;
-        // } else {
-        //   _sectionRecord.expand = true;
-        // }
       },
 
-      /// 方法的是否有值知否要判断
-      // onTap: () {
-      //   // if (widget.tradeCellCallback()) {}
-
-      //   print(
-      //       '\n=============================\nwidget.index = ${widget.index} \n${widget.tradeDetailModel}\n=============================');
-      // },
       onTapCancel: () {
         print('我被取消了');
       },
-      // 如何监听点击 开始点击 - 结束点击？？？？
 
       child: Container(
         color: Colors.white,
@@ -148,10 +123,8 @@ class _TradeCellState extends State<TradeCell> {
                       padding: const EdgeInsets.only(left: 15, top: 15),
                       child: Text(
                         '${widget.tradeDetailModel.typeDetail}',
-                        style: TextStyle(
-                            // fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: Color(0xff333333)),
+                        style:
+                            TextStyle(fontSize: 14, color: Color(0xff333333)),
                       ),
                     ),
                     Padding(
@@ -159,7 +132,6 @@ class _TradeCellState extends State<TradeCell> {
                       child: Text(
                         '${widget.tradeDetailModel.outCome > 0 ? "-${widget.tradeDetailModel.outCome}" : "+${widget.tradeDetailModel.inCome}"}元',
                         style: TextStyle(
-                            // fontWeight: FontWeight.bold,
                             fontSize: 15,
                             color: widget.tradeDetailModel.outCome > 0
                                 ? Color(0xff10bfc7)
@@ -191,14 +163,9 @@ class _TradeCellState extends State<TradeCell> {
                     ),
                   ],
                 ),
+
                 // 展开的详细说明
                 expandWidget(),
-
-                // if (_sectionRecord.expand) {
-                //   Container(),
-                // } else {
-
-                // }
 
                 /// 分割线
                 Container(
@@ -221,9 +188,6 @@ class _TradeCellState extends State<TradeCell> {
           ],
         ),
       ),
-      // child:
-
-      // ),
     );
   }
 }
