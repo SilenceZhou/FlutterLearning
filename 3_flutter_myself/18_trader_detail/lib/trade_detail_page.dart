@@ -10,6 +10,7 @@ class TradeDetailPage extends StatefulWidget {
 }
 
 class _TradeDetailPageState extends State<TradeDetailPage> {
+  SectionRecord _sectionRecord;
   @override
   Widget build(BuildContext context) {
     /// 一定要在第一个build里面进行初始化，这个时候才能获取到屏幕
@@ -27,6 +28,20 @@ class _TradeDetailPageState extends State<TradeDetailPage> {
           return TradeCell(
             tradeDetailModel: model.data.list[index],
             index: index,
+            tradeCellCallback: (SectionRecord aSectionRecord) {
+              setState(() {
+                if (_sectionRecord == null) {
+                  _sectionRecord = SectionRecord(index: index, expand: true);
+                } else if (_sectionRecord.index == index) {
+                  _sectionRecord.expand = !_sectionRecord.expand;
+                  _sectionRecord.index = index;
+                } else {
+                  _sectionRecord.index = index;
+                  _sectionRecord.expand = true;
+                }
+              });
+              return _sectionRecord;
+            },
           );
         },
       ),

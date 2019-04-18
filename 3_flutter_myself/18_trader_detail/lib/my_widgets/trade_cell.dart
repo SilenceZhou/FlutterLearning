@@ -5,13 +5,29 @@ import 'package:trader_detail/models/trade_detail_model.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+class SectionRecord {
+  int index;
+  bool expand;
+  SectionRecord({@required this.index, @required this.expand});
+  @override
+  String toString() {
+    return ' index : ${this.index}, expand : ${this.expand}';
+  }
+}
+
+typedef TradeCellCallback = SectionRecord Function(
+    SectionRecord aSectionRecord);
+
 class TradeCell extends StatefulWidget {
   TradeDetailModel tradeDetailModel;
   var index;
+  TradeCellCallback tradeCellCallback;
+
   TradeCell({
     Key key,
     @required this.tradeDetailModel,
     @required this.index,
+    this.tradeCellCallback,
   })  : assert(tradeDetailModel != null),
         assert(index != null),
         super(key: key);
@@ -24,20 +40,95 @@ class TradeCell extends StatefulWidget {
 // 展开高度为 106
 class _TradeCellState extends State<TradeCell> {
   Widget container = Container();
+  SectionRecord _sectionRecord;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
 
+  Widget expandWidget() {
+    if (_sectionRecord != null) {
+      print(
+          '_sectionRecord = $_sectionRecord , widget.index = ${widget.index}');
+    } else {
+      print('widget.index = ${widget.index}');
+    }
+
+    if (_sectionRecord != null &&
+        _sectionRecord.expand != null &&
+        _sectionRecord.expand &&
+        _sectionRecord.index == widget.index) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 3, bottom: 3),
+        child: Stack(
+          children: <Widget>[
+            // Image(image: ,),
+            Container(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              // color: Colors.blue,
+              height: 35,
+              width: ScreenUtil.screenWidth - 30,
+              child: Image.asset(
+                'images/tradeDetail_greyBg.png',
+                width: ScreenUtil.screenWidth - 30,
+                height: ScreenUtil.instance.setHeight(35),
+                fit: BoxFit.fill,
+              ),
+            ),
+
+            Container(
+              // color: Colors.blue,
+              height: 40,
+              width: ScreenUtil.screenWidth - 30,
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Text(
+                  '${widget.tradeDetailModel.remain}',
+                  style: TextStyle(
+                    color: Color(0xff666666),
+                    fontSize: 13,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Container(height: 15);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // return GestureDetector(
     return InkWell(
       onTap: () {
-        print(
-            '\n=============================\nwidget.index = ${widget.index} \n${widget.tradeDetailModel}\n=============================');
+        print('-----before ----- $_sectionRecord');
+        setState(() {
+          _sectionRecord = widget.tradeCellCallback(_sectionRecord);
+
+          // if (widget.index != _sectionRecord.index) {
+          //   _sectionRecord.expand = false;
+          // }
+        });
+        print('-----after ----- $_sectionRecord');
+        // if (tmpsectionRecord != null) return;
+        // if (tmpsectionRecord == _sectionRecord) {
+        //   _sectionRecord.expand = false;
+        // } else {
+        //   _sectionRecord.expand = true;
+        // }
       },
+
+      /// 方法的是否有值知否要判断
+      // onTap: () {
+      //   // if (widget.tradeCellCallback()) {}
+
+      //   print(
+      //       '\n=============================\nwidget.index = ${widget.index} \n${widget.tradeDetailModel}\n=============================');
+      // },
       onTapCancel: () {
         print('我被取消了');
       },
@@ -101,43 +192,13 @@ class _TradeCellState extends State<TradeCell> {
                   ],
                 ),
                 // 展开的详细说明
-                Padding(
-                  padding: const EdgeInsets.only(top: 3, bottom: 3),
-                  child: Stack(
-                    children: <Widget>[
-                      // Image(image: ,),
-                      Container(
-                        padding: EdgeInsets.only(left: 15, right: 15),
-                        // color: Colors.blue,
-                        height: 35,
-                        width: ScreenUtil.screenWidth - 30,
-                        child: Image.asset(
-                          'images/tradeDetail_greyBg.png',
-                          width: ScreenUtil.screenWidth - 30,
-                          height: ScreenUtil.instance.setHeight(35),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
+                expandWidget(),
 
-                      Container(
-                        // color: Colors.blue,
-                        height: 40,
-                        width: ScreenUtil.screenWidth - 30,
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Text(
-                            '${widget.tradeDetailModel.remain}',
-                            style: TextStyle(
-                              color: Color(0xff666666),
-                              fontSize: 13,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // if (_sectionRecord.expand) {
+                //   Container(),
+                // } else {
+
+                // }
 
                 /// 分割线
                 Container(
