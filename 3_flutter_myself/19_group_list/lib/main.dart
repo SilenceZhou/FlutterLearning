@@ -27,12 +27,17 @@ class Group {
   int value;
 
   Group(this.groupName, this.value);
+  @override
+  String toString() {
+    // TODO: implement toString
+    return "groupName = ${this.groupName}, value = ${this.value}";
+  }
 }
 
 class ExampleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GroupedListView<Group, String>(
+    return GoupListView<Group, String>(
       collection: [
         Group("Test1", 5),
         Group("Test1", 6),
@@ -43,8 +48,7 @@ class ExampleWidget extends StatelessWidget {
         Group("Test1", 4),
       ],
       groupBy: (Group g) => g.groupName,
-      listBuilder: (BuildContext context, Group g) =>
-          ListTile(title: Text(g.value.toString())),
+      listBuilder: (BuildContext context, Group g) => ListTile(title: Text(g.value.toString())),
       groupBuilder: (BuildContext context, String name) => Text(name),
     );
   }
