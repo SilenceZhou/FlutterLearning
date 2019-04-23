@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 /// http://dart.goodev.org/guides/language/language-tour#typedefs
 /// 在 Dart 语言中，方法也是对象。 使用 typedef, 或者 function-type alias 来为方法类型命名， 然后可以使用命名的方法。 当把方法类型赋值给一个变量的时候，typedef 保留类型信息。
 
-/// TElement : cell
-/// TGroup : section
-typedef TGroup GroupFunction<TElement, TGroup>(TElement element);
+typedef TGroup GroupFunction<TElement, TGroup, int>(TElement element);
 
 typedef Widget ListBuilderFunction<TElement>(
     BuildContext context, TElement element);
@@ -27,7 +25,7 @@ class GoupListView<TElement, TGroup> extends StatefulWidget {
   }
 
   final List<TElement> collection;
-  final GroupFunction<TElement, TGroup> groupBy;
+  final GroupFunction<TElement, TGroup, int> groupBy;
   final ListBuilderFunction<TElement> listBuilder;
   final GroupBuilderFunction<TGroup> groupBuilder;
 
@@ -45,6 +43,7 @@ class _GoupListViewState<TElement, TGroup>
   @override
   Widget build(BuildContext context) {
     print('_flattenedList = ${widget._flattenedList}');
+
     return ListView.builder(
       itemCount: widget._flattenedList.length,
       itemBuilder: (context, index) {
@@ -63,7 +62,7 @@ class Grouper<TElement, TGroup> {
   final Map<TGroup, List<TElement>> _groupedList = {};
 
   List<dynamic> groupList(
-      List<TElement> collection, GroupFunction<TElement, TGroup> groupBy) {
+      List<TElement> collection, GroupFunction<TElement, TGroup, int> groupBy) {
     if (collection == null) throw ArgumentError("Collection can not be null");
     if (groupBy == null)
       throw ArgumentError("GroupBy function can not be null");
