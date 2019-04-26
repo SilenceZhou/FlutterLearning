@@ -30,6 +30,7 @@ class TradeDetailModel {
     this.remain,
   });
 
+  /// 命名构造函数
   TradeDetailModel.fromJson(Map<String, dynamic> json) {
     dealTime = json["dealTime"];
     typeDetail = json["typeDetail"];
