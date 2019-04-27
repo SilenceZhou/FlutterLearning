@@ -13,6 +13,7 @@ class TradeDetailPage extends StatefulWidget {
 }
 
 class _TradeDetailPageState extends State<TradeDetailPage> {
+  /// 当前选中cell  ---- SectionRecord是否可以把这个作为参数呢？
   SectionRecord _sectionRecord;
   @override
   Widget build(BuildContext context) {
@@ -25,54 +26,36 @@ class _TradeDetailPageState extends State<TradeDetailPage> {
       appBar: AppBar(
         title: Text('交易明细'),
       ),
-      body: GoupListView<TradeDetailModel, String>(
+      body: GoupListView<TradeDetailModel, String, int>(
         collection: model.data.list,
         groupBy: (TradeDetailModel model) => model.dealTime.substring(0, 7),
-        listBuilder: (BuildContext context, TradeDetailModel model) {
+        listBuilder: (BuildContext context, TradeDetailModel model, int index) {
           return TradeCell(
             tradeDetailModel: model,
-            // index: index,
-            // tradeCellCallback: (SectionRecord aSectionRecord) {
-            //   setState(() {
-            //     if (_sectionRecord == null) {
-            //       _sectionRecord = SectionRecord(index: index, expand: true);
-            //     } else if (_sectionRecord.index == index) {
-            //       _sectionRecord.expand = !_sectionRecord.expand;
-            //       _sectionRecord.index = index;
-            //     } else {
-            //       _sectionRecord.index = index;
-            //       _sectionRecord.expand = true;
-            //     }
-            //   });
-            //   return _sectionRecord;
-            // },
+            index: index,
+            tradeCellCallback: (SectionRecord aSectionRecord) {
+              setState(() {
+                /// 如果list中没有选中的_sectionRecord
+                if (_sectionRecord == null) {
+                  _sectionRecord = SectionRecord(index: index, expand: true);
+
+                  /// 如果点击了已选中的cell
+                } else if (_sectionRecord.index == index) {
+                  _sectionRecord.expand = !_sectionRecord.expand;
+                  _sectionRecord.index = index;
+
+                  /// 如果是点击了未选中的
+                } else {
+                  _sectionRecord.index = index;
+                  _sectionRecord.expand = true;
+                }
+              });
+              return _sectionRecord;
+            },
           );
         },
         groupBuilder: header,
       ),
-      // body: ListView.builder(
-      //   itemCount: model.data.list.length,
-      //   itemBuilder: (BuildContext context, int index) {
-      //     return TradeCell(
-      //       tradeDetailModel: model.data.list[index],
-      //       index: index,
-      //       tradeCellCallback: (SectionRecord aSectionRecord) {
-      //         setState(() {
-      //           if (_sectionRecord == null) {
-      //             _sectionRecord = SectionRecord(index: index, expand: true);
-      //           } else if (_sectionRecord.index == index) {
-      //             _sectionRecord.expand = !_sectionRecord.expand;
-      //             _sectionRecord.index = index;
-      //           } else {
-      //             _sectionRecord.index = index;
-      //             _sectionRecord.expand = true;
-      //           }
-      //         });
-      //         return _sectionRecord;
-      //       },
-      //     );
-      //   },
-      // ),
     );
   }
 

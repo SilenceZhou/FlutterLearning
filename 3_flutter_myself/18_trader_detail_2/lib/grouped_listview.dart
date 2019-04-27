@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 
 typedef TGroup GroupFunction<TElement, TGroup, int>(TElement element);
 
-typedef Widget ListBuilderFunction<TElement>(
-    BuildContext context, TElement element);
+typedef Widget ListBuilderFunction<TElement, int>(
+    BuildContext context, TElement element, int index);
 
 typedef Widget GroupBuilderFunction<TGroup>(BuildContext context, TGroup group);
 
-class GoupListView<TElement, TGroup> extends StatefulWidget {
+class GoupListView<TElement, TGroup, int> extends StatefulWidget {
   GoupListView(
       {Key key,
       @required this.collection,
@@ -26,7 +26,7 @@ class GoupListView<TElement, TGroup> extends StatefulWidget {
 
   final List<TElement> collection;
   final GroupFunction<TElement, TGroup, int> groupBy;
-  final ListBuilderFunction<TElement> listBuilder;
+  final ListBuilderFunction<TElement, int> listBuilder;
   final GroupBuilderFunction<TGroup> groupBuilder;
 
   final List<dynamic> _flattenedList = List();
@@ -39,7 +39,7 @@ class GoupListView<TElement, TGroup> extends StatefulWidget {
 }
 
 class _GoupListViewState<TElement, TGroup>
-    extends State<GoupListView<TElement, TGroup>> {
+    extends State<GoupListView<TElement, TGroup, int>> {
   @override
   Widget build(BuildContext context) {
     print('_flattenedList = ${widget._flattenedList}');
@@ -49,7 +49,7 @@ class _GoupListViewState<TElement, TGroup>
       itemBuilder: (context, index) {
         var element = widget._flattenedList[index];
         if (element is TElement) {
-          return widget.listBuilder(context, element);
+          return widget.listBuilder(context, element, index);
         }
         return widget.groupBuilder(context, element);
       },
