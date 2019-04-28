@@ -30,6 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   /// 简单的用流来处理事件
+  /// 1.
   final StreamController<int> _streamController = StreamController<int>();
 
   @override
@@ -47,7 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        // 只有StreamBuilder被重建（当然它的子部件，被streamBuilder包裹的子控件）;
+        /// 2. 使用流构建起来作为某个widget的包裹，则该widget下面的子widget都能收到stream得触发事件
+        /// 
+        /// 
+        /// 只有StreamBuilder被重建（当然它的子部件，被streamBuilder包裹的子控件）;
+        /// 
         child: StreamBuilder(
           stream: _streamController.stream,
           initialData: _counter,
@@ -73,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
+            /// 3. 使用
             onPressed: ()=>_streamController.sink.add(++_counter),
             tooltip: 'Increment',
             child: Icon(Icons.add),

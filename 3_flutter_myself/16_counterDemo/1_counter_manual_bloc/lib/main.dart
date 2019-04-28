@@ -43,19 +43,17 @@ class _MyHomePageState extends State<MyHomePage> {
       body: StreamBuilder(
         stream: _bloc.counter,
         initialData: 0,
+
+        /// 这个异步镜像(snapshot)做为stream的响应==>state
         builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
           return Container(
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    'You have pushed the button this many times:',
-                  ),
-                  Text(
-                    '${snapshot.data}',
-                    style: Theme.of(context).textTheme.display1,
-                  ),
+                  Text('You have pushed the button this many times:'),
+                  Text('${snapshot.data}',
+                      style: Theme.of(context).textTheme.display1),
                 ],
               ),
             ),
@@ -66,13 +64,14 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-            onPressed: ()=>_bloc.counterEventSink.add(IncreamentEvent()),
+            /// ==>events
+            onPressed: () => _bloc.counterEventSink.add(IncreamentEvent()),
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ),
           SizedBox(width: 20),
           FloatingActionButton(
-            onPressed: ()=>_bloc.counterEventSink.add(DecreamentEvent()),
+            onPressed: () => _bloc.counterEventSink.add(DecreamentEvent()),
             tooltip: 'Decrement',
             child: Icon(Icons.remove),
           ),

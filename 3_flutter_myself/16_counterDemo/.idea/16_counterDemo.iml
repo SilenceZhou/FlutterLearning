@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../../16_counterDemo/gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../../16_counterDemo/gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../../16_counterDemo/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/../../16_counterDemo/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../../16_counterDemo/assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../../16_counterDemo/libs" />
+        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../../16_counterDemo/proguard_logs" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
+      <excludeFolder url="file://$MODULE_DIR$/0_counter_stream/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/0_counter_stream/build" />
+      <excludeFolder url="file://$MODULE_DIR$/1_counter_manual_bloc/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/1_counter_manual_bloc/build" />
+      <excludeFolder url="file://$MODULE_DIR$/2_counter_third_flutterbloc/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/2_counter_third_flutterbloc/build" />
+      <excludeFolder url="file://$MODULE_DIR$/2_counter_third_flutterbloc2/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/2_counter_third_flutterbloc2/build" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
