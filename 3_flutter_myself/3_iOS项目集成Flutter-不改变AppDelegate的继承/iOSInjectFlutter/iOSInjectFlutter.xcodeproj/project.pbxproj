@@ -341,7 +341,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-iOSInjectFlutter/Pods-iOSInjectFlutter-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-iOSInjectFlutter/Pods-iOSInjectFlutter-frameworks.sh",
 				"${PODS_ROOT}/../../my_flutter/.ios/Flutter/engine/Flutter.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -352,7 +352,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSInjectFlutter/Pods-iOSInjectFlutter-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOSInjectFlutter/Pods-iOSInjectFlutter-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
