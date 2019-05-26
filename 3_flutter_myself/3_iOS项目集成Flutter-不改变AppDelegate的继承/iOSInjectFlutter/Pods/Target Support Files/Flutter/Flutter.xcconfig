@@ -7,5 +7,5 @@ PODS_ROOT = ${SRCROOT}
 PODS_TARGET_SRCROOT = ${PODS_ROOT}/../../my_flutter/.ios/Flutter/engine
 PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.${PRODUCT_NAME:rfc1034identifier}
 SKIP_INSTALL = YES
-#include "/Users/zhouyun/Desktop/FlutterLearning/3_flutter_myself/3_iOS项目集成Flutter-不改变AppDelegate的继承/my_flutter/.ios/Flutter/Generated.xcconfig"
-#include "/Users/zhouyun/Desktop/FlutterLearning/3_flutter_myself/3_iOS项目集成Flutter-不改变AppDelegate的继承/my_flutter/.ios/Flutter/Generated.xcconfig"
+#include "/Users/silencezhou/Desktop/FlutterLearning/3_flutter_myself/3_iOS项目集成Flutter-不改变AppDelegate的继承/my_flutter/.ios/Flutter/Generated.xcconfig"
+#include "/Users/silencezhou/Desktop/FlutterLearning/3_flutter_myself/3_iOS项目集成Flutter-不改变AppDelegate的继承/my_flutter/.ios/Flutter/Generated.xcconfig"

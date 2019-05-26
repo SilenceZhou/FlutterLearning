@@ -339,16 +339,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iOSInjectFlutter/Pods-iOSInjectFlutter-frameworks.sh",
-				"${PODS_ROOT}/../../my_flutter/.ios/Flutter/engine/Flutter.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-iOSInjectFlutter/Pods-iOSInjectFlutter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flutter.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-iOSInjectFlutter/Pods-iOSInjectFlutter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

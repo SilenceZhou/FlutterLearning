@@ -6,6 +6,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
+/// 插件包API的Android实现.
 /** HelloPlugin */
 public class HelloPlugin implements MethodCallHandler {
   /** Plugin registration. */
