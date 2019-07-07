@@ -3,7 +3,6 @@ import 'dart:async';
 import 'service_url.dart';
 import 'dart:io';
 
-
 Future request(url, formData) async {
   try {
     print('开始获取数据--------');
@@ -11,7 +10,7 @@ Future request(url, formData) async {
     Dio dio = new Dio();
     dio.options.contentType =
         ContentType.parse('application/x-www-form-urlencoded');
-    if (formData == null){
+    if (formData == null) {
       response = await dio.post(servicePath[url]);
     } else {
       response = await dio.post(servicePath[url], data: formData);
@@ -25,8 +24,6 @@ Future request(url, formData) async {
     return print(e);
   }
 }
-
-
 
 // Future getHomePageContent() async {
 //   try {
