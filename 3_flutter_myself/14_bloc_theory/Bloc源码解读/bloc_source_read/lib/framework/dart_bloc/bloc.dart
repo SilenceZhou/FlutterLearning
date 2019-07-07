@@ -118,11 +118,17 @@ abstract class Bloc<Event, State> {
   }
 
   /// Transforms the `Stream<Event>` along with a `next` function into a `Stream<State>`.
+  /// 将`Stream <Event>`和`next`函数转换为`Stream <State>`。
+  ///
   /// Events that should be processed by `mapEventToState` need to be passed to `next`.
+  /// 应该由`mapEventToState`处理的事件需要传递给`next`。
+  ///
   /// By default `asyncExpand` is used to ensure all events are processed in the order
   /// in which they are received. You can override `transform` for advanced usage
   /// in order to manipulate the frequency and specificity with which `mapEventToState`
   /// is called as well as which events are processed.
+  /// 默认情况下，`asyncExpand`用于确保按接收顺序处理所有事件。
+  /// 您可以重写`transform`以进行高级用法，以便操纵调用`mapEventToState`的频率和特异性以及处理哪些事件。
   ///
   /// For example, if you only want `mapEventToState` to be called on the most recent
   /// event you can use `switchMap` instead of `asyncExpand`.

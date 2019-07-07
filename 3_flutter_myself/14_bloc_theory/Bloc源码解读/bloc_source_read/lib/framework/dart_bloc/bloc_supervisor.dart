@@ -15,6 +15,7 @@ class BlocSupervisor {
   static BlocDelegate get delegate => _instance._delegate;
 
   /// [BlocDelegate] setter which sets the singleton [BlocSupervisor] instance's [BlocDelegate].
+  /// [BlocDelegate] setter设置单例[BlocSupervisor]实例的[BlocDelegate]。
   static set delegate(BlocDelegate d) {
     _instance._delegate = d ?? BlocDelegate();
   }
