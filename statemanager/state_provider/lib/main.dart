@@ -4,10 +4,11 @@ import './provide/counter.dart';
 
 //// 状态管理方案： Redux、Scoped Model、Bloc、Provide、StatefulWidget
 ///  Provide: 谷歌出品
+///  参考链接: https://mp.weixin.qq.com/s/8VoRA0aE128wKnUq-uRJWA
 
 void main() {
   var counter = Counter();
-  var providers = Providers();
+  var providers = Providers(); // 此处为Providers
   providers..provide(Provider<Counter>.value(counter));
   // 多个状态管理
   // providers
