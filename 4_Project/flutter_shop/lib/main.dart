@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'pages/index_pages.dart';
 import 'package:provide/provide.dart';
 import 'provide/child_category.dart';
+import 'provide/category_goods_list_provide.dart';
 
 void main() {
   var childCategory = ChildCategory();
+  var categoryGoodsListProvide = CategoryGoodsListProvide();
   var providers = Providers();
-  providers..provide(Provider<ChildCategory>.value(childCategory));
-  runApp(
-    ProviderNode(
-      child: MyApp(),
-      providers: providers,
-    ),
-  );
+
+  providers
+    ..provide(Provider<ChildCategory>.value(childCategory))
+    ..provide(
+        Provider<CategoryGoodsListProvide>.value(categoryGoodsListProvide));
+
+  runApp(ProviderNode(child: MyApp(), providers: providers));
 }
 
 /// Awesome flutter 插件： 自动生成代码插件
