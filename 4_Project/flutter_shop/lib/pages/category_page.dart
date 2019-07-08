@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:provide/provide.dart';
 import '../service/service_method.dart';
 import '../models/category_model.dart';
+import '../models/category_goods_list.dart';
 import '../provide/child_category.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -193,7 +194,10 @@ class _CategoryGoodListState extends State<CategoryGoodList> {
     };
     await request('getMallGoods', data).then((val) {
       var data = json.decode(val.toString());
-      print('商品分类:\n$data');
+
+      CategoryGoodsListModel goodListModel =
+          CategoryGoodsListModel.fromJson(data);
+      print('>>>>>> 商品分类:\n${goodListModel.data[0].goodsName}}');
     });
   }
 }
