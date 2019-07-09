@@ -10,6 +10,7 @@ import '../models/category_goods_list.dart';
 import '../provide/child_category.dart';
 import '../provide/category_goods_list_provide.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:fluttertoast/fluttertoast.dart'; //轻量级提示插件
 
 class CategoryPage extends StatelessWidget {
   @override
@@ -260,7 +261,7 @@ class _CategoryGoodListState extends State<CategoryGoodList> {
     return Provide<CategoryGoodsListProvide>(
       builder: (context, child, data) {
         try {
-          /// 在大类切换的时候然ListView 回到顶部
+          /// 在大类���换��时候然ListView 回到顶部
           if (Provide.value<ChildCategory>(context).page == 1) {
             scrollController.jumpTo(0.0);
           }
@@ -325,6 +326,15 @@ class _CategoryGoodListState extends State<CategoryGoodList> {
       CategoryGoodsListModel goodListModel =
           CategoryGoodsListModel.fromJson(data);
       if (goodListModel.data == null) {
+        Fluttertoast.showToast(
+          msg: '我是有底线的',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          backgroundColor: Colors.pink,
+          textColor: Colors.white,
+          timeInSecForIos: 1,
+          fontSize: 16.0,
+        );
         Provide.value<ChildCategory>(context).changeNomore('没有更多数据');
       } else {
         //Provide.value<ChildCategory>(context).changeNomore('上拉加载更多...');
