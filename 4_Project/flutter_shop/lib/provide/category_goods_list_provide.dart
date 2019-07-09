@@ -12,4 +12,11 @@ class CategoryGoodsListProvide with ChangeNotifier {
     /// 通知所有监听者
     notifyListeners();
   }
+
+  getMoreList(List<CategoryListData> list) {
+    goodsList.addAll(list);
+
+    /// 通知所有监听者
+    notifyListeners();
+  }
 }

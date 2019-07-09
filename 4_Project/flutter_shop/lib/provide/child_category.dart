@@ -11,8 +11,18 @@ class ChildCategory with ChangeNotifier {
   /// 一级分类切换逻辑
   String categoryId = '4';
 
+  /// 小类Id
+  String subId = '';
+
+  /// 列表页数
+  int page = 1;
+
+  /// 显示没有数据的文字
+  String noMoreText = '';
+
+  /// 大类切换保存数据进行传递
   getChildCategory(List<BxMallSubDto> list, String id) {
-    /// 点击大类 子类高亮所用进行清零
+    //点击大类 子类高亮所用进行清零
     childIndex = 0;
     categoryId = id;
 
@@ -35,8 +45,21 @@ class ChildCategory with ChangeNotifier {
   }
 
   /// 改变子类索引
-  changeChildIndex(index) {
+  changeChildIndex(index, String id) {
+    subId = id;
     childIndex = index;
+    page = 1;
+    noMoreText = '';
+    notifyListeners();
+  }
+
+  /// 增加页面
+  addPage() {
+    page++;
+  }
+
+  changeNomore(String string) {
+    noMoreText = string;
     notifyListeners();
   }
 }

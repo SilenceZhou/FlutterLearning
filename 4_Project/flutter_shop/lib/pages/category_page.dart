@@ -9,6 +9,7 @@ import '../models/category_model.dart';
 import '../models/category_goods_list.dart';
 import '../provide/child_category.dart';
 import '../provide/category_goods_list_provide.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class CategoryPage extends StatelessWidget {
   @override
@@ -41,6 +42,7 @@ class LeftCategoryNav extends StatefulWidget {
   _LeftCategoryNavState createState() => _LeftCategoryNavState();
 }
 
+/// 切换大类的时候进行滚动到第一个数据
 class _LeftCategoryNavState extends State<LeftCategoryNav> {
   /// 左导航数据
   List<CategoryModel> list = [];
@@ -189,7 +191,8 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
     return InkWell(
       onTap: () {
         /// 点击改变选中颜色
-        Provide.value<ChildCategory>(context).changeChildIndex(index);
+        Provide.value<ChildCategory>(context)
+            .changeChildIndex(index, item.mallSubId);
         _getGoodsList(item.mallSubId);
       },
       child: Container(
@@ -221,10 +224,14 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
 
       CategoryGoodsListModel goodListModel =
           CategoryGoodsListModel.fromJson(data);
-
-      /// 二级segment 分类数组的保存  状态管理
-      Provide.value<CategoryGoodsListProvide>(context)
-          .getGoodsList(goodListModel.data);
+      if (goodListModel.data == null) {
+        /// 二级segment 分类数组的保存  状态管理
+        Provide.value<CategoryGoodsListProvide>(context).getGoodsList([]);
+      } else {
+        /// 二级segment 分类数组的保存  状态管理
+        Provide.value<CategoryGoodsListProvide>(context)
+            .getGoodsList(goodListModel.data);
+      }
     });
   }
 }
@@ -238,7 +245,11 @@ class CategoryGoodList extends StatefulWidget {
 }
 
 class _CategoryGoodListState extends State<CategoryGoodList> {
-  // List<CategoryListData> list = [];
+  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
+
+  /// 拿到ListView进行滚动监听 或者 主动滚动操作
+  var scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
@@ -248,23 +259,79 @@ class _CategoryGoodListState extends State<CategoryGoodList> {
   Widget build(BuildContext context) {
     return Provide<CategoryGoodsListProvide>(
       builder: (context, child, data) {
-        /// Expanded 继承自 Flexible 可伸缩组件
+        try {
+          /// 在大类切换的时候然ListView 回到顶部
+          if (Provide.value<ChildCategory>(context).page == 1) {
+            scrollController.jumpTo(0.0);
+          }
+        } catch (e) {
+          print('进入页面进行第一次初始化: $e');
+        }
 
-        return Expanded(
-          // 解决高度溢出问题
-          child: Container(
-            width: ScreenUtil().setWidth(570),
-            height: ScreenUtil().setHeight(830),
-            child: ListView.builder(
-              itemCount: data.goodsList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _listWidget(data.goodsList, index);
-              },
+        if (data.goodsList.length > 0) {
+          /// Expanded 继承自 Flexible 可伸缩组件
+          return Expanded(
+            // 解决高度溢出问题
+            child: Container(
+              width: ScreenUtil().setWidth(570),
+              height: ScreenUtil().setHeight(830),
+              child: EasyRefresh(
+                refreshFooter: ClassicsFooter(
+                  key: _footerKey,
+                  bgColor: Colors.white,
+                  textColor: Colors.pink,
+                  moreInfoColor: Colors.pink,
+                  showMore: true,
+                  noMoreText: Provide.value<ChildCategory>(context).noMoreText,
+                  moreInfo: '加载中',
+                  loadReadyText: '上拉加载中...',
+                ),
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemCount: data.goodsList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return _listWidget(data.goodsList, index);
+                  },
+                ),
+                loadMore: () async {
+                  print('上拉加载更多...');
+                  _getMoreList();
+                },
+              ),
             ),
-          ),
-        );
+          );
+        } else {
+          /// 数据为空友好提示
+          return Container(
+            padding: EdgeInsets.only(top: 200),
+            child: Text('暂时没有数据'),
+          );
+        }
       },
     );
+  }
+
+  void _getMoreList() async {
+    Provide.value<ChildCategory>(context).addPage();
+
+    var data = {
+      'categoryId': Provide.value<ChildCategory>(context).categoryId,
+      'CategorySubid': Provide.value<ChildCategory>(context).subId,
+      'page': Provide.value<ChildCategory>(context).page,
+    };
+    await request('getMallGoods', data).then((val) {
+      var data = json.decode(val.toString());
+
+      CategoryGoodsListModel goodListModel =
+          CategoryGoodsListModel.fromJson(data);
+      if (goodListModel.data == null) {
+        Provide.value<ChildCategory>(context).changeNomore('没有更多数据');
+      } else {
+        //Provide.value<ChildCategory>(context).changeNomore('上拉加载更多...');
+        Provide.value<CategoryGoodsListProvide>(context)
+            .getMoreList(goodListModel.data);
+      }
+    });
   }
 
   /// 大拆分
