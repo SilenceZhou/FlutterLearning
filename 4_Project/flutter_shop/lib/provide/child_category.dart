@@ -5,7 +5,17 @@ import '../models/category_model.dart';
 class ChildCategory with ChangeNotifier {
   List<BxMallSubDto> childCategoryList = [];
 
-  getChildCategory(List<BxMallSubDto> list) {
+  /// 子类高亮索引
+  int childIndex = 0;
+
+  /// 一级分类切换逻辑
+  String categoryId = '4';
+
+  getChildCategory(List<BxMallSubDto> list, String id) {
+    /// 点击大类 子类高亮所用进行清零
+    childIndex = 0;
+    categoryId = id;
+
     /// 添加全部
     BxMallSubDto all = BxMallSubDto();
 
@@ -21,6 +31,12 @@ class ChildCategory with ChangeNotifier {
     childCategoryList.addAll(list);
 
     /// 通知所有的听众
+    notifyListeners();
+  }
+
+  /// 改变子类索引
+  changeChildIndex(index) {
+    childIndex = index;
     notifyListeners();
   }
 }

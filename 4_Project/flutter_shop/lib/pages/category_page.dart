@@ -33,6 +33,8 @@ class CategoryPage extends StatelessWidget {
   }
 }
 
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 /// 左边一级segment
 class LeftCategoryNav extends StatefulWidget {
   @override
@@ -53,7 +55,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
     /// 获取网络数据
     _getCategory();
 
-    /// segment第一栏数据
+    /// segment第一个列表数据初始化
     _getGoodsList();
   }
 
@@ -68,7 +70,8 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
         });
         var childList = list[index].bxMallSubDto;
         var categoryId = list[index].mallCategoryId;
-        Provide.value<ChildCategory>(context).getChildCategory(childList);
+        Provide.value<ChildCategory>(context)
+            .getChildCategory(childList, categoryId);
         _getGoodsList(categoryId: categoryId);
       },
       child: Container(
@@ -114,9 +117,11 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
       setState(() {
         list = model.data;
       });
-      // 解决bug: 第一行没数据
-      Provide.value<ChildCategory>(context)
-          .getChildCategory(list[0].bxMallSubDto);
+      // 解决bug: 一级第一行没数据
+      Provide.value<ChildCategory>(context).getChildCategory(
+        list[0].bxMallSubDto,
+        list[0].mallCategoryId,
+      );
     });
   }
 
@@ -135,12 +140,16 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
 
       CategoryGoodsListModel goodListModel =
           CategoryGoodsListModel.fromJson(data);
+
+      /// 二级segment 分类数组的保存  状态管理
       Provide.value<CategoryGoodsListProvide>(context)
           .getGoodsList(goodListModel.data);
     });
   }
 }
 
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 /// 右侧二级segment
 class RightCategoryNav extends StatefulWidget {
   @override
@@ -165,7 +174,7 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
           scrollDirection: Axis.horizontal,
           itemCount: childCategory.childCategoryList.length,
           itemBuilder: (BuildContext context, int index) {
-            return _rightInkWell(childCategory.childCategoryList[index]);
+            return _rightInkWell(index, childCategory.childCategoryList[index]);
           },
         ),
       );
@@ -173,9 +182,16 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
   }
 
   /// segment item
-  Widget _rightInkWell(BxMallSubDto item) {
+  Widget _rightInkWell(int index, BxMallSubDto item) {
+    bool isSelected =
+        (index == Provide.value<ChildCategory>(context).childIndex);
+
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        /// 点击改变选中颜色
+        Provide.value<ChildCategory>(context).changeChildIndex(index);
+        _getGoodsList(item.mallSubId);
+      },
       child: Container(
         padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
         child: Text(
@@ -183,13 +199,38 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
           item.mallSubName,
           style: TextStyle(
             fontSize: ScreenUtil().setSp(28),
+            color: isSelected ? Colors.pink : Colors.black,
           ),
         ),
       ),
     );
   }
+
+  void _getGoodsList(
+    String categorySubId,
+    // String categorySubid,
+    // int page,
+  ) async {
+    var data = {
+      'categoryId': Provide.value<ChildCategory>(context).categoryId,
+      'categorySubId': categorySubId,
+      'page': 1,
+    };
+    await request('getMallGoods', data).then((val) {
+      var data = json.decode(val.toString());
+
+      CategoryGoodsListModel goodListModel =
+          CategoryGoodsListModel.fromJson(data);
+
+      /// 二级segment 分类数组的保存  状态管理
+      Provide.value<CategoryGoodsListProvide>(context)
+          .getGoodsList(goodListModel.data);
+    });
+  }
 }
 
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 /// 商品列表
 class CategoryGoodList extends StatefulWidget {
   @override
@@ -207,14 +248,19 @@ class _CategoryGoodListState extends State<CategoryGoodList> {
   Widget build(BuildContext context) {
     return Provide<CategoryGoodsListProvide>(
       builder: (context, child, data) {
-        return Container(
-          width: ScreenUtil().setWidth(570),
-          height: ScreenUtil().setHeight(830),
-          child: ListView.builder(
-            itemCount: data.goodsList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return _listWidget(data.goodsList, index);
-            },
+        /// Expanded 继承自 Flexible 可伸缩组件
+
+        return Expanded(
+          // 解决高度溢出问题
+          child: Container(
+            width: ScreenUtil().setWidth(570),
+            height: ScreenUtil().setHeight(830),
+            child: ListView.builder(
+              itemCount: data.goodsList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return _listWidget(data.goodsList, index);
+              },
+            ),
           ),
         );
       },
