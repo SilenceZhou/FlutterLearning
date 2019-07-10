@@ -3,6 +3,10 @@ import 'pages/index_pages.dart';
 import 'package:provide/provide.dart';
 import 'provide/child_category.dart';
 import 'provide/category_goods_list_provide.dart';
+import 'package:fluro/fluro.dart';
+
+import 'routers/application.dart';
+import 'routers/routes.dart';
 
 void main() {
   var childCategory = ChildCategory();
@@ -23,9 +27,15 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    /// 注入
+    final Router router = Router();
+    Routes.configureRoutes(router);
+    Application.router = router;
+
     return Container(
       // 套一层 便于以后拓展
       child: MaterialApp(
+        onGenerateRoute: Application.router.generator, // 配置
         title: '百姓生活家',
         debugShowCheckedModeBanner: false, // 去掉debug
         theme: ThemeData(

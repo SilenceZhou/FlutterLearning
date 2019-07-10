@@ -1,3 +1,4 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 import '../../service/service_method.dart';
@@ -8,6 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'floor_title.dart';
 import 'hot_goods.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import '../../routers/application.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -150,7 +152,14 @@ class _HomePageState extends State<HomePage>
     if (hotGoodsList.length != 0) {
       List<Widget> listWidget = hotGoodsList.map((val) {
         return InkWell(
-          onTap: () {},
+          onTap: () {
+            /// 跳转为默认为 model 从上到下
+            Application.router.navigateTo(
+              context,
+              'detail?id=${val['goodsId']}',
+              transition: TransitionType.inFromRight,
+            );
+          },
           child: Container(
             width: ScreenUtil().setWidth(372),
             color: Colors.white,

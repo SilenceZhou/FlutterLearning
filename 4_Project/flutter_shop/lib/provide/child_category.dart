@@ -21,7 +21,7 @@ class ChildCategory with ChangeNotifier {
   String noMoreText = '';
 
   /// 大类切换保存数据进行传递
-  getChildCategory(List<BxMallSubDto> list, String id) {
+  getChildCategory(List<BxMallSubDto> list, String  id) {
     //点击大类 子类高亮所用进行清零
     childIndex = 0;
     categoryId = id;
