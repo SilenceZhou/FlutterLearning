@@ -3,6 +3,7 @@ import 'pages/index_pages.dart';
 import 'package:provide/provide.dart';
 import 'provide/child_category.dart';
 import 'provide/category_goods_list_provide.dart';
+import 'provide/detail_info_provide.dart';
 import 'package:fluro/fluro.dart';
 
 import 'routers/application.dart';
@@ -11,12 +12,16 @@ import 'routers/routes.dart';
 void main() {
   var childCategory = ChildCategory();
   var categoryGoodsListProvide = CategoryGoodsListProvide();
+  var detailInfoProvide = DetailInfoProvide();
+
   var providers = Providers();
 
+  /// 注入
   providers
     ..provide(Provider<ChildCategory>.value(childCategory))
     ..provide(
-        Provider<CategoryGoodsListProvide>.value(categoryGoodsListProvide));
+        Provider<CategoryGoodsListProvide>.value(categoryGoodsListProvide))
+    ..provide(Provider<DetailInfoProvide>.value(detailInfoProvide));
 
   runApp(ProviderNode(child: MyApp(), providers: providers));
 }
