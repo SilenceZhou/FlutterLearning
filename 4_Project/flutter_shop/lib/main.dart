@@ -9,6 +9,8 @@ import 'package:fluro/fluro.dart';
 import 'routers/application.dart';
 import 'routers/routes.dart';
 
+import 'package:flutter_bugly/flutter_bugly.dart';
+
 void main() {
   var childCategory = ChildCategory();
   var categoryGoodsListProvide = CategoryGoodsListProvide();
@@ -16,14 +18,19 @@ void main() {
 
   var providers = Providers();
 
+  FlutterBugly.init(
+    iOSAppId: "e9bb23176b",
+  );
+
   /// 注入
   providers
     ..provide(Provider<ChildCategory>.value(childCategory))
     ..provide(
         Provider<CategoryGoodsListProvide>.value(categoryGoodsListProvide))
     ..provide(Provider<DetailInfoProvide>.value(detailInfoProvide));
-
-  runApp(ProviderNode(child: MyApp(), providers: providers));
+  FlutterBugly.postCatchedException(() {
+    runApp(ProviderNode(child: MyApp(), providers: providers));
+  });
 }
 
 /// Awesome flutter 插件： 自动生成代码插件

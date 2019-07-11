@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
-
-import '../../service/service_method.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'dart:convert';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import '../../routers/application.dart';
+import 'package:fluro/fluro.dart';
 
 class FloorTitle extends StatelessWidget {
   final String picture_address;
@@ -51,8 +44,9 @@ class FloorContent extends StatelessWidget {
       child: InkWell(
         onTap: () {
           print('点击了楼层商品');
-          Application.router
-              .navigateTo(context, '/detail?id=${goods["goodsId"]}');
+          Application.router.navigateTo(
+              context, '/detail?id=${goods["goodsId"]}',
+              transition: TransitionType.inFromRight);
         },
         child: Image.network(goods['image']),
       ),

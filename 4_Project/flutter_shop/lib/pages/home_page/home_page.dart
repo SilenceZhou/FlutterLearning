@@ -238,9 +238,8 @@ class SwiperDiy extends StatelessWidget {
         onTap: (index) {
           print('index = $index');
           Application.router.navigateTo(
-            context,
-            "/detail?id=${swiperDataList[index]["goodsId"]}",
-          );
+              context, "/detail?id=${swiperDataList[index]["goodsId"]}",
+              transition: TransitionType.inFromRight);
         },
       ),
     );
@@ -359,7 +358,8 @@ class Recommend extends StatelessWidget {
     return InkWell(
       onTap: () {
         Application.router.navigateTo(
-            context, "/detail?id=${recommandList[index]['goodsId']}");
+            context, "/detail?id=${recommandList[index]['goodsId']}",
+            transition: TransitionType.inFromRight);
       },
       child: Container(
         height: ScreenUtil().setHeight(330),

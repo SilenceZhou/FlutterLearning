@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
 import 'package:flutter_shop/provide/detail_info_provide.dart';
+import 'details_top_area.dart';
+import 'details_explain.dart';
+import 'details_tabbar.dart';
+import '../../routers/application.dart';
+import 'details_web.dart';
 
 class DetailPage extends StatelessWidget {
   final String goodsId;
@@ -15,20 +20,23 @@ class DetailPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            // Navigator.pop(context);
+            Application.router.pop(context);
           },
         ),
       ),
       body: FutureBuilder(
         future: _getBackInfo(context),
-        // initialData: InitialData,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           // 判断为hasData
           if (snapshot.hasData) {
             return Container(
-              child: Column(
+              child: ListView(
                 children: <Widget>[
-                  Text('$goodsId'),
+                  DetailsTopArea(),
+                  DetailsExplain(),
+                  DetailsTabbar(),
+                  DetailsWeb(),
                 ],
               ),
             );
