@@ -7,6 +7,9 @@ import 'dart:convert';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import '../../routers/application.dart';
+
 class FloorTitle extends StatelessWidget {
   final String picture_address;
   FloorTitle({Key key, this.picture_address}) : super(key: key);
@@ -26,37 +29,41 @@ class FloorContent extends StatelessWidget {
 
   FloorContent({Key key, this.floorList}) : super(key: key);
 
-  Widget _firstRow() {
+  Widget _firstRow(
+    context,
+  ) {
     return Row(
       children: <Widget>[
-        _goodsItem(floorList[0]),
+        _goodsItem(context, floorList[0]),
         Column(
           children: <Widget>[
-            _goodsItem(floorList[1]),
-            _goodsItem(floorList[2]),
+            _goodsItem(context, floorList[1]),
+            _goodsItem(context, floorList[2]),
           ],
         )
       ],
     );
   }
 
-  Widget _goodsItem(Map goods) {
+  Widget _goodsItem(BuildContext context, Map goods) {
     return Container(
       width: ScreenUtil().setWidth(375),
       child: InkWell(
         onTap: () {
           print('点击了楼层商品');
+          Application.router
+              .navigateTo(context, '/detail?id=${goods["goodsId"]}');
         },
         child: Image.network(goods['image']),
       ),
     );
   }
 
-  Widget _otherGoods() {
+  Widget _otherGoods(context) {
     return Row(
       children: <Widget>[
-        _goodsItem(floorList[1]),
-        _goodsItem(floorList[2]),
+        _goodsItem(context, floorList[1]),
+        _goodsItem(context, floorList[2]),
       ],
     );
   }
@@ -66,8 +73,8 @@ class FloorContent extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          _firstRow(),
-          _otherGoods(),
+          _firstRow(context),
+          _otherGoods(context),
         ],
       ),
     );

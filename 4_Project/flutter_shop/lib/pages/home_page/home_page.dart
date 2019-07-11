@@ -56,6 +56,7 @@ class _HomePageState extends State<HomePage>
             List<Map> swiper = ((data['data']['slides']) as List).cast();
             List<Map> navigatorList =
                 ((data['data']['category']) as List).cast();
+            print("====navigatorList = ${navigatorList}");
             String adPiture = myData['advertesPicture']['PICTURE_ADDRESS'];
             String leaderImage = myData['shopInfo']['leaderImage'];
             String leaderIphone = myData['shopInfo']['leaderIphone'];
@@ -236,6 +237,10 @@ class SwiperDiy extends StatelessWidget {
         autoplay: true,
         onTap: (index) {
           print('index = $index');
+          Application.router.navigateTo(
+            context,
+            "/detail?id=${swiperDataList[index]["goodsId"]}",
+          );
         },
       ),
     );
@@ -251,7 +256,8 @@ class TopNavigator extends StatelessWidget {
   Widget _gridViewItemUI(BuildContext context, item) {
     return InkWell(
       onTap: () {
-        print('点击了导航');
+        // print("首页导航 goodsId = ${item[""]}");
+        // Application.router.navigateTo(context, item["goodsId"]);
       },
       child: Column(
         children: <Widget>[
@@ -349,9 +355,12 @@ class Recommend extends StatelessWidget {
     );
   }
 
-  Widget _item(index) {
+  Widget _item(context, index) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Application.router.navigateTo(
+            context, "/detail?id=${recommandList[index]['goodsId']}");
+      },
       child: Container(
         height: ScreenUtil().setHeight(330),
         width: ScreenUtil().setWidth(330),
@@ -383,7 +392,7 @@ class Recommend extends StatelessWidget {
   }
 
   /// 横向列表
-  Widget _recommandList() {
+  Widget _recommandList(context) {
     return Container(
       height: ScreenUtil().setHeight(330),
       margin: EdgeInsets.all(8.0),
@@ -391,7 +400,7 @@ class Recommend extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: recommandList.length,
         itemBuilder: (context, index) {
-          return _item(index);
+          return _item(context, index);
         },
       ),
     );
@@ -406,7 +415,7 @@ class Recommend extends StatelessWidget {
       child: Column(
         children: <Widget>[
           _titleWidget(),
-          _recommandList(),
+          _recommandList(context),
         ],
       ),
     );
