@@ -6,6 +6,7 @@ import 'details_explain.dart';
 import 'details_tabbar.dart';
 import '../../routers/application.dart';
 import 'details_web.dart';
+import 'details_bottom.dart';
 
 class DetailPage extends StatelessWidget {
   final String goodsId;
@@ -25,27 +26,39 @@ class DetailPage extends StatelessWidget {
           },
         ),
       ),
-      body: FutureBuilder(
-        future: _getBackInfo(context),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          // 判断为hasData
-          if (snapshot.hasData) {
-            return Container(
-              child: ListView(
+      body: SafeArea(
+        child: FutureBuilder(
+          future: _getBackInfo(context),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            // 判断为hasData
+            if (snapshot.hasData) {
+              return Stack(
                 children: <Widget>[
-                  DetailsTopArea(),
-                  DetailsExplain(),
-                  DetailsTabbar(),
-                  DetailsWeb(),
+                  Container(
+                    child: ListView(
+                      children: <Widget>[
+                        DetailsTopArea(),
+                        DetailsExplain(),
+                        DetailsTabbar(),
+                        DetailsWeb(),
+                      ],
+                    ),
+                  ),
+                  // positioned 定位在最低部分，那如何进行滚动到最底部呢？
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    child: DetailsBottom(),
+                  )
                 ],
-              ),
-            );
-          } else {
-            return Center(
-              child: Text('加载中......'),
-            );
-          }
-        },
+              );
+            } else {
+              return Center(
+                child: Text('加载中......'),
+              );
+            }
+          },
+        ),
       ),
     );
   }
