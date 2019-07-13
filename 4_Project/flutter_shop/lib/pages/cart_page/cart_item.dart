@@ -6,18 +6,19 @@ import '../../models/cart_info_model.dart';
 import 'cart_count.dart';
 import 'package:provide/provide.dart';
 import 'package:flutter_shop/provide/cart_provide.dart';
+import 'package:flutter_shop/provide/cart_provide.dart';
 
-class CartItem extends StatefulWidget {
-  CartInfoModel item;
+// class CartItem extends StatefulWidget {
+//   CartInfoModel item;
 
-  CartItem(this.item);
+//   CartItem(this.item);
 
-  @override
-  _CartItemState createState() => _CartItemState();
-}
-
-class _CartItemState extends State<CartItem> {
 //   @override
+//   _CartItemState createState() => _CartItemState();
+// }
+
+// class _CartItemState extends State<CartItem> {
+// //   @override
 //   Widget build(BuildContext context) {
 //     return Container(
 
@@ -25,8 +26,10 @@ class _CartItemState extends State<CartItem> {
 //   }
 // }
 
-// class CartItem extends StatelessWidget {
+class CartItem extends StatelessWidget {
+  CartInfoModel item;
 
+  CartItem(this.item);
   @override
   Widget build(BuildContext context) {
     //print(item.toString());
@@ -40,10 +43,10 @@ class _CartItemState extends State<CartItem> {
           )),
       child: Row(
         children: <Widget>[
-          _cartCheckButton(context, widget.item),
-          _cartImage(widget.item),
-          _cartGoodsName(widget.item),
-          _cartPrice(context, widget.item),
+          _cartCheckButton(context, item),
+          _cartImage(item),
+          _cartGoodsName(item),
+          _cartPrice(context, item),
         ],
       ),
     );
@@ -56,10 +59,8 @@ class _CartItemState extends State<CartItem> {
         value: item.isCheck,
         activeColor: Colors.pink,
         onChanged: (bool isSelected) {
-          setState(() {
-            item.isCheck = !item.isCheck;
-          });
-          print('isSelected = ${isSelected}');
+          item.isCheck = isSelected;
+          Provide.value<CartProvide>(context).changeCheckState(item);
         },
       ),
     );
