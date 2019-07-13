@@ -4,14 +4,29 @@ import '../../models/cart_info_model.dart';
 
 import 'cart_count.dart';
 
-class CartItem extends StatelessWidget {
+class CartItem extends StatefulWidget {
   CartInfoModel item;
 
   CartItem(this.item);
 
   @override
+  _CartItemState createState() => _CartItemState();
+}
+
+class _CartItemState extends State<CartItem> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+
+//     );
+//   }
+// }
+
+// class CartItem extends StatelessWidget {
+
+  @override
   Widget build(BuildContext context) {
-    print(item.toString());
+    //print(item.toString());
     return Container(
       margin: EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 2.0), //外边距
       padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
@@ -22,22 +37,27 @@ class CartItem extends StatelessWidget {
           )),
       child: Row(
         children: <Widget>[
-          _cartCheckButton(item),
-          _cartImage(item),
-          _cartGoodsName(item),
-          _cartPrice(item),
+          _cartCheckButton(context, widget.item),
+          _cartImage(widget.item),
+          _cartGoodsName(widget.item),
+          _cartPrice(widget.item),
         ],
       ),
     );
   }
 
   // 复选框
-  Widget _cartCheckButton(CartInfoModel item) {
+  Widget _cartCheckButton(BuildContext context, CartInfoModel item) {
     return Container(
       child: Checkbox(
-        value: true,
+        value: item.isCheck,
         activeColor: Colors.pink,
-        onChanged: (bool isSelected) {},
+        onChanged: (bool isSelected) {
+          setState(() {
+            item.isCheck = !item.isCheck;
+          });
+          print('isSelected = ${isSelected}');
+        },
       ),
     );
   }

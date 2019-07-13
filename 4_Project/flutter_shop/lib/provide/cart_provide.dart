@@ -31,14 +31,15 @@ class CartProvide extends ChangeNotifier {
         'count': count,
         'price': price,
         'images': images,
+        'isCheck': true,
       };
 
       tmpList.add(newGoods);
       cartInfoModelList.add(CartInfoModel.fromJson(newGoods));
     }
     cartString = json.encode(tmpList).toString();
-    print('字符串 $cartString');
-    print('数据模型 $cartInfoModelList');
+    // print('字符串 $cartString');
+    // print('数据模型 $cartInfoModelList');
     prefs.setString('cartInfo', cartString);
     notifyListeners();
   }
@@ -47,7 +48,7 @@ class CartProvide extends ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove('cartInfo');
     cartInfoModelList = [];
-    print('cartInfo 清空完成.......');
+    // print('cartInfo 清空完成.......');
     notifyListeners();
   }
 

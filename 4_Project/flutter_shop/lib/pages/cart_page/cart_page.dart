@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'cart_item.dart';
 import 'cart_bottom.dart';
-import 'cart_count.dart';
 
 class CartPage extends StatelessWidget {
   @override
