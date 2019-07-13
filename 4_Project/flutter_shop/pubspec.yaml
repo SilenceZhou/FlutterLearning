@@ -32,6 +32,7 @@ dependencies:
   # flutter_html: ^0.10.2
   flutter_html: 0.9.6
   flutter_bugly: ^0.2.3+1
+  shared_preferences: ^0.5.3+2
 
 dev_dependencies:
   flutter_test:
