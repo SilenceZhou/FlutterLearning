@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'cart_page.dart';
+import '../pages/cart_page/cart_page.dart';
 import '../pages/home_page/home_page.dart';
 import 'category_page.dart';
 import 'member_page.dart';
@@ -51,7 +51,6 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-
     // print('设备像素密度:${ScreenUtil.pixelRatio}');
     // print('设备的高:${ScreenUtil.screenHeight / ScreenUtil.pixelRatio}');
     // print('设备的宽:${ScreenUtil.screenWidth / ScreenUtil.pixelRatio}');
