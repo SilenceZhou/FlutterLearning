@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_shop/provide/cart_provide.dart';
+import 'package:provide/provide.dart';
 
 class CartCount extends StatelessWidget {
+  var item;
+  CartCount(this.item);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,35 +22,39 @@ class CartCount extends StatelessWidget {
       ),
       child: Row(
         children: <Widget>[
-          _reduceButton(),
-          _countArea(),
-          _addButton(),
+          _reduceButton(context),
+          _countArea(context),
+          _addButton(context),
         ],
       ),
     );
   }
 
-  Widget _reduceButton() {
+  Widget _reduceButton(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Provide.value<CartProvide>(context).addOrReduceAction(item, 'reduce');
+      },
       child: Container(
         width: ScreenUtil().setWidth(45),
         height: ScreenUtil().setHeight(45),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: item.count > 1 ? Colors.white : Colors.black12,
           border: Border(
             right: BorderSide(width: 1, color: Colors.black12),
           ),
         ),
-        child: Text('-'),
+        child: item.count > 1 ? Text('-') : Text(''),
       ),
     );
   }
 
-  Widget _addButton() {
+  Widget _addButton(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Provide.value<CartProvide>(context).addOrReduceAction(item, 'add');
+      },
       child: Container(
         width: ScreenUtil().setWidth(45),
         height: ScreenUtil().setHeight(45),
@@ -61,12 +70,12 @@ class CartCount extends StatelessWidget {
     );
   }
 
-  Widget _countArea() {
+  Widget _countArea(BuildContext context) {
     return Container(
       width: ScreenUtil().setWidth(70),
       height: ScreenUtil().setHeight(45),
       alignment: Alignment.center,
-      child: Text('1'),
+      child: Text('${item.count}'),
     );
   }
 }

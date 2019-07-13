@@ -5,12 +5,9 @@ import 'provide/child_category.dart';
 import 'provide/category_goods_list_provide.dart';
 import 'provide/detail_info_provide.dart';
 import 'package:fluro/fluro.dart';
-
 import 'routers/application.dart';
 import 'routers/routes.dart';
-
 import 'package:flutter_bugly/flutter_bugly.dart';
-
 import 'provide/cart_provide.dart';
 
 void main() {
