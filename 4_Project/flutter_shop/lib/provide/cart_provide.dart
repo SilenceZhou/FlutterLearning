@@ -6,6 +6,8 @@ import 'package:flutter_shop/models/cart_info_model.dart';
 class CartProvide extends ChangeNotifier {
   String cartString = "[]";
   List<CartInfoModel> cartInfoModelList = [];
+  double allPrice = 0; // 总结价格
+  int allGoodsCount = 0; // 商品总数量
 
   save(goodsId, goodsName, count, price, images) async {
     print('保存');
@@ -60,9 +62,17 @@ class CartProvide extends ChangeNotifier {
       cartInfoModelList = [];
     } else {
       List<Map> tmpList = (json.decode(cartString.toString()) as List).cast();
+      allPrice = 0;
+      allGoodsCount = 0;
       tmpList.forEach((item) {
-        cartInfoModelList.add(CartInfoModel.fromJson(item));
+        CartInfoModel model = CartInfoModel.fromJson(item);
+        if (model.isCheck) {
+          allPrice += (model.count * model.price);
+          allGoodsCount += model.count;
+        }
+        cartInfoModelList.add(model);
       });
+
       notifyListeners();
     }
   }
