@@ -66,4 +66,24 @@ class CartProvide extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  /// 删除单个购物车商品
+  deleteOneGoods(String goodsId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    cartString = prefs.getString('cartInfo');
+    List<Map> tmpList = (json.decode(cartString.toString()) as List).cast();
+    int tmpIndex = 0;
+    int delIndex = 0;
+    tmpList.forEach((item) {
+      if (item['goodsId'] == goodsId) {
+        delIndex = tmpIndex;
+      }
+    });
+    tmpList.removeAt(delIndex);
+    cartString = json.encode(tmpList).toString();
+    prefs.setString('cartInfo', cartString);
+    await getCartInfo();
+
+    notifyListeners();
+  }
 }

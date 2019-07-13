@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provide/provide.dart';
 import '../../models/cart_info_model.dart';
 
 import 'cart_count.dart';
+import 'package:provide/provide.dart';
+import 'package:flutter_shop/provide/cart_provide.dart';
 
 class CartItem extends StatefulWidget {
   CartInfoModel item;
@@ -40,7 +43,7 @@ class _CartItemState extends State<CartItem> {
           _cartCheckButton(context, widget.item),
           _cartImage(widget.item),
           _cartGoodsName(widget.item),
-          _cartPrice(widget.item),
+          _cartPrice(context, widget.item),
         ],
       ),
     );
@@ -90,7 +93,7 @@ class _CartItemState extends State<CartItem> {
   }
 
   /// 商品价格
-  Widget _cartPrice(CartInfoModel item) {
+  Widget _cartPrice(BuildContext context, CartInfoModel item) {
     return Container(
       width: ScreenUtil().setWidth(150),
       alignment: Alignment.centerRight,
@@ -99,7 +102,10 @@ class _CartItemState extends State<CartItem> {
           Text('¥${item.price}'),
           Container(
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Provide.value<CartProvide>(context)
+                    .deleteOneGoods(item.goodsId);
+              },
               child: Icon(
                 Icons.delete_forever,
                 color: Colors.black12,
