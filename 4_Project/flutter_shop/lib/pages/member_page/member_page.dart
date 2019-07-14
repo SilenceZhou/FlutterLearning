@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'member_list.dart';
 
 class MemberPage extends StatelessWidget {
   @override
@@ -16,6 +17,7 @@ class MemberPage extends StatelessWidget {
           _topHeader(),
           _orderTitle(),
           _orderType(),
+          MemberList(),
         ],
       ),
     );

@@ -4,7 +4,7 @@ import 'package:provide/provide.dart';
 import '../pages/cart_page/cart_page.dart';
 import '../pages/home_page/home_page.dart';
 import 'category_page.dart';
-import 'member_page.dart';
+import '../pages/member_page/member_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_shop/provide/current_index.dart';
 
