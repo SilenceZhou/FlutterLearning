@@ -49,7 +49,7 @@ class CartProvide extends ChangeNotifier {
       cartInfoModelList.add(CartInfoModel.fromJson(newGoods));
 
       allPrice += count * price;
-      allGoodsCount += price;
+      allGoodsCount += count;
     }
     cartString = json.encode(tmpList).toString();
     // print('字符串 $cartString');
