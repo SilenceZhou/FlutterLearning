@@ -9,12 +9,14 @@ import 'routers/application.dart';
 import 'routers/routes.dart';
 import 'package:flutter_bugly/flutter_bugly.dart';
 import 'provide/cart_provide.dart';
+import 'package:flutter_shop/provide/current_index.dart';
 
 void main() {
   var childCategory = ChildCategory();
   var categoryGoodsListProvide = CategoryGoodsListProvide();
   var detailInfoProvide = DetailInfoProvide();
   var cartProvide = CartProvide();
+  var currentIndexProvide = CurrentIndexProvide();
 
   var providers = Providers();
 
@@ -28,6 +30,7 @@ void main() {
     ..provide(
         Provider<CategoryGoodsListProvide>.value(categoryGoodsListProvide))
     ..provide(Provider<DetailInfoProvide>.value(detailInfoProvide))
+    ..provide(Provider<CurrentIndexProvide>.value(currentIndexProvide))
     ..provide(Provider<CartProvide>.value(cartProvide));
 
   FlutterBugly.postCatchedException(() {

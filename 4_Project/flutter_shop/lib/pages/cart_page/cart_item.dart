@@ -7,24 +7,8 @@ import 'cart_count.dart';
 import 'package:provide/provide.dart';
 import 'package:flutter_shop/provide/cart_provide.dart';
 import 'package:flutter_shop/provide/cart_provide.dart';
-
-// class CartItem extends StatefulWidget {
-//   CartInfoModel item;
-
-//   CartItem(this.item);
-
-//   @override
-//   _CartItemState createState() => _CartItemState();
-// }
-
-// class _CartItemState extends State<CartItem> {
-// //   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-
-//     );
-//   }
-// }
+import 'package:flutter_shop/routers/application.dart';
+import 'package:fluro/fluro.dart';
 
 class CartItem extends StatelessWidget {
   CartInfoModel item;
@@ -32,22 +16,27 @@ class CartItem extends StatelessWidget {
   CartItem(this.item);
   @override
   Widget build(BuildContext context) {
-    //print(item.toString());
-    return Container(
-      margin: EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 2.0), //外边距
-      padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(
-            bottom: BorderSide(width: 1, color: Colors.black12),
-          )),
-      child: Row(
-        children: <Widget>[
-          _cartCheckButton(context, item),
-          _cartImage(item),
-          _cartGoodsName(item),
-          _cartPrice(context, item),
-        ],
+    return GestureDetector(
+      onTap: () {
+        Application.router.navigateTo(context, "/detail?id=${item.goodsId}",
+            transition: TransitionType.inFromRight);
+      },
+      child: Container(
+        margin: EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 2.0), //外边距
+        padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              bottom: BorderSide(width: 1, color: Colors.black12),
+            )),
+        child: Row(
+          children: <Widget>[
+            _cartCheckButton(context, item),
+            _cartImage(item),
+            _cartGoodsName(item),
+            _cartPrice(context, item),
+          ],
+        ),
       ),
     );
   }

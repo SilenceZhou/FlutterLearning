@@ -11,6 +11,8 @@ import '../provide/child_category.dart';
 import '../provide/category_goods_list_provide.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:fluttertoast/fluttertoast.dart'; //轻量级提示插件
+import 'package:flutter_shop/routers/application.dart';
+import 'package:fluro/fluro.dart';
 
 class CategoryPage extends StatelessWidget {
   @override
@@ -291,7 +293,7 @@ class _CategoryGoodListState extends State<CategoryGoodList> {
                   controller: scrollController,
                   itemCount: data.goodsList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return _listWidget(data.goodsList, index);
+                    return _listWidget(context, data.goodsList, index);
                   },
                 ),
                 loadMore: () async {
@@ -393,9 +395,13 @@ class _CategoryGoodListState extends State<CategoryGoodList> {
   }
 
   ///  组合为Item
-  Widget _listWidget(List newList, int index) {
+  Widget _listWidget(
+      BuildContext context, List<CategoryListData> newList, int index) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Application.router
+            .navigateTo(context, 'detail?id=${newList[index].goodsId}');
+      },
       child: Container(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
         decoration: BoxDecoration(
