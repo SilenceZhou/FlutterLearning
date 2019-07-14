@@ -18,12 +18,20 @@ class CartProvide extends ChangeNotifier {
     List<Map> tmpList = (tmp as List).cast();
     bool isHave = false;
     int ival = 0;
+    allPrice = 0;
+    allGoodsCount = 0;
     tmpList.forEach((item) {
       if (item["goodsId"] == goodsId) {
         tmpList[ival]['count'] = item['count'] + 1;
         cartInfoModelList[ival].count++;
         isHave = true;
       }
+      if (item['isCheck']) {
+        allPrice +=
+            (cartInfoModelList[ival].price * cartInfoModelList[ival].count);
+        allGoodsCount += cartInfoModelList[ival].count;
+      }
+
       ival++;
     });
 
@@ -39,6 +47,9 @@ class CartProvide extends ChangeNotifier {
 
       tmpList.add(newGoods);
       cartInfoModelList.add(CartInfoModel.fromJson(newGoods));
+
+      allPrice += count * price;
+      allGoodsCount += price;
     }
     cartString = json.encode(tmpList).toString();
     // print('字符串 $cartString');
