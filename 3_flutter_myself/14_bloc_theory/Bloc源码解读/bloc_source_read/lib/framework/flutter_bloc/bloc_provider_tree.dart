@@ -1,12 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'flutter_bloc.dart';
 
-/// A Flutter [Widget] that merges multiple [BlocProvider] widgets into one widget tree.
-///
-/// [BlocProviderTree] improves the readability and eliminates the need
-/// to nest multiple [BlocProviders].
-///
-/// By using [BlocProviderTree] we can go from:
+/// BlocProviderTree 是 一个Flutter Widget，它将多个BlocProvider小部件合并到一个小部件树中。
+/// BlocProviderTree提高了可读性，并且无需嵌套多个BlocProviders。
+/// 通过使用BlocProviderTree，我们可以从：
 ///
 /// ```dart
 /// BlocProvider<BlocA>(
@@ -34,19 +31,17 @@ import 'flutter_bloc.dart';
 /// )
 /// ```
 ///
-/// [BlocProviderTree] converts the [BlocProvider] list
-/// into a tree of nested [BlocProvider] widgets.
-/// As a result, the only advantage of using [BlocProviderTree] is improved
-/// readability due to the reduction in nesting and boilerplate.
+/// BlocProviderTree将BlocProvider列表转换为嵌套BlocProvider 部件的树。
+/// 因此，使用BlocProviderTree的唯一优势是由于嵌套和样板的减少而提高了可读性。
+/// 使用的地方： 在有不同的嵌套的情况下使用
 class BlocProviderTree extends StatelessWidget {
-  /// The [BlocProvider] list which is converted into a tree of [BlocProvider] widgets.
-  /// The tree of [BlocProvider] widgets is created in order meaning the first [BlocProvider]
-  /// will be the top-most [BlocProvider] and the last [BlocProvider] will be a direct ancestor
-  /// of the `child` [Widget].
+  /// BlocProvider列表被转换为BlocProvider小部件的树。
+  ///  BlocProvider小部件的树是按顺序创建的，意味着第一个BlocProvider将是最顶层的BlocProvider，
+  /// 而最后一个BlocProvider将是`child` Widget的直接祖先（可以同属的理解老爸）。
   final List<BlocProvider> blocProviders;
 
-  /// The [Widget] and its descendants which will have access to every [Bloc] provided by `blocProviders`.
-  /// This [Widget] will be a direct descendent of the last [BlocProvider] in `blocProviders`.
+  /// Widget及其后代将访问由`blocProviders`提供的每个Bloc。
+  /// 这个Widget将是`blocProviders`中最后一个BlocProvider的直接后代。
   final Widget child;
 
   BlocProviderTree({

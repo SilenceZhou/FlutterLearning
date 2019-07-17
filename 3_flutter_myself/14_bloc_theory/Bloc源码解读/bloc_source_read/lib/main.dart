@@ -1,62 +1,78 @@
 import 'package:flutter/material.dart';
+import 'framework/flutter_bloc/flutter_bloc.dart';
+import 'framework/dart_bloc/dart_bloc.dart';
+import 'bloc/bloc.dart';
+import 'myhomepage.dart';
 
-void main() => runApp(MyApp());
+// class SimpleBlocDelegate extends BlocDelegate {
+//   @override
+//   void onTransition(Bloc bloc, Transition transition) {
+//     super.onTransition(bloc, transition);
+//     print("bloc = $bloc, transition = $transition");
+//   }
+// }
+
+// void main() {
+//   BlocSupervisor.delegate = SimpleBlocDelegate();
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatefulWidget {
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+
+// class _MyAppState extends State<MyApp> {
+//   CounterBloc _bloc = CounterBloc();
+
+//   @override
+//   void dispose() {
+//     super.dispose();
+//     _bloc.dispose(); // 以免内存泄露问题
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocProvider<CounterBloc>(
+//       bloc: _bloc, // 初始化（调用父类Bloc()）状态绑定
+//       child: MaterialApp(
+//         title: 'Flutter Demo',
+//         theme: ThemeData(
+//           primarySwatch: Colors.blue,
+//         ),
+//         home: MyHomePage(),
+//       ),
+//     );
+//   }
+// }
+
+class SimpleBlocDelegate extends BlocDelegate {
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    print("bloc = $bloc, transition = $transition");
+  }
+}
+
+void main() {
+  BlocSupervisor.delegate = SimpleBlocDelegate();
+  runApp(BlocProvider(
+    bloc: CounterBloc(),
+    child: MyApp(),
+  ));
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+    return BlocProvider<CounterBloc>(
+      bloc: BlocProvider.of<CounterBloc>(context),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+        home: MyHomePage(),
       ),
     );
   }

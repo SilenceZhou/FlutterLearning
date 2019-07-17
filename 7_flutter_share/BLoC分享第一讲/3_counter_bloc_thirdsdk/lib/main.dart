@@ -27,10 +27,6 @@ class _MyAppState extends State<MyApp> {
         bloc: _bloc,
         child: MyHomePage(title: 'Flutter Demo Home Page'),
       ),
-      home: BlocProvider(
-        bloc: _bloc1,
-        child: MyHomePage(title: 'Flutter Demo Home Page'),
-      ),
     );
   }
 

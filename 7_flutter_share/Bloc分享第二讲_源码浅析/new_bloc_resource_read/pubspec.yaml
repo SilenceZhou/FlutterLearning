@@ -1,0 +1,23 @@
+name: bloc_resource_read
+description: A new Flutter project.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  rxdart: ^0.22.0
+  provider: ^3.0.0+1
+  cupertino_icons: ^0.1.2
+  # 目前集成的就是一下两个
+  # bloc: ^0.14.4
+  # flutter_bloc: ^0.19.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
