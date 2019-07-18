@@ -22,7 +22,7 @@ abstract class Bloc<Event, State> {
   /// 返回state流, 由UI层使用。
   Stream<State> get state => _stateSubject.stream;
 
-  /// 在任何时间分发之前进行 初始化操作
+  /// 在任何时间分发之前进行 初始化操作 !!!!!
   State get initialState;
 
   /// 在所有event被分发(dispatched)之前 返回 State ==> 即状态的初始值，initialState在编码时一定要赋初始值
@@ -64,6 +64,8 @@ abstract class Bloc<Event, State> {
       /// 先通知代理进行监听
       BlocSupervisor.delegate.onEvent(this, event);
       onEvent(event);
+
+      /// 事件触发
       _eventSubject.sink.add(event);
     } catch (error) {
       _handleError(error);
@@ -109,8 +111,7 @@ abstract class Bloc<Event, State> {
   ///   );
   /// }
   /// ```
-  Stream<State> transform(
-      Stream<Event> events, Stream<State> next(Event event)) {
+  Stream<State> transform( Stream<Event> events, Stream<State> next(Event event)) {
     return events.asyncExpand(next);
   }
 
@@ -126,21 +127,29 @@ abstract class Bloc<Event, State> {
       return mapEventToState(currentEvent).handleError(_handleError);
     }).forEach(
       (State nextState) {
+
+        /// 过滤相同状态 stateSubject销毁 不进行下面触发
         if (currentState == nextState || _stateSubject.isClosed) return;
+
         final transition = Transition(
           currentState: currentState,
           event: currentEvent,
           nextState: nextState,
         );
 
-        /// 单独定义的 delegate 在 实例方法之前被调用
+        /// onTransition 被调用
+        /// 1.代理类
+        /// 2.继承了bloc的类
         BlocSupervisor.delegate.onTransition(this, transition);
         onTransition(transition);
+
+        /// 发送数据
         _stateSubject.add(nextState);
       },
     );
   }
 
+  /// 错误回调：  错误信息 与 堆栈信息
   void _handleError(Object error, [StackTrace stacktrace]) {
     BlocSupervisor.delegate.onError(this, error, stacktrace);
     onError(error, stacktrace);

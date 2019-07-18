@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-///  ChangeNotifier : 管理全量的听众
+/// 注意点：
+/// 1. 继承 ChangeNotifier
+/// 2. 定义一个类似于setter / getter方法
+/// 3. 在setter方法中 需要调用 notifyListeners();
 class Counter with ChangeNotifier {
   int value = 0;
 
