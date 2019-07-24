@@ -10,26 +10,34 @@ class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          automaticallyImplyLeading: false,
-          titleSpacing: 0.0,
-          leading: null,
-          backgroundColor: Colors.blue,
-          title: Text("Second Page")
-          // Container(
-          //   color: Colors.red,
-          //   width: double.infinity, //MediaQuery.of(context).size.width,
-          //   height: double.infinity,
-          //   alignment: Alignment.center,
-          //   child: Text('Material App Bar111'),
-          // ),
-          ),
+      // appBar: AppBar(
+      //   brightness: Brightness.light,
+      //   // automaticallyImplyLeading: false,
+      //   titleSpacing: 0.0,
+      //   leading: null,
+      //   backgroundColor: Colors.white,
+      //   title: Text("Second Page"),
+      //   // textTheme: TextTheme(),
+      //   // Container(
+      //   //   color: Colors.red,
+      //   //   width: double.infinity, //MediaQuery.of(context).size.width,
+      //   //   height: double.infinity,
+      //   //   alignment: Alignment.center,
 
-      // appBar: ZYAppBar(
-      //   // hasBack: false,
-      //   title: Text('Second Page'),
-      //   leading: Text('hello'),
+      //   //   child: Text('Material App Bar111'),
+      //   // ),
       // ),
+      appBar: ZYAppBar(
+        title: Text('SecondPage'),
+        leading: Text('hello'),
+        statusBarStyle: ZYStatusBarStyle.dark,
+      ),
+      body: Container(
+        color: Colors.white,
+        child: Center(
+          child: Text("Second Page"),
+        ),
+      ),
     );
   }
 }

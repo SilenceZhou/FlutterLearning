@@ -21,17 +21,22 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
+      //   // shape: Border(bottom: BorderSide(width: 0.5, color: Colors.blue)),
+      //   // brightness: Brightness.light,
       //   titleSpacing: 0.0,
-      //   backgroundColor: Colors.blue,
+      //   // backgroundColor: Colors.white,
       //   title: Container(
-      //     color: Colors.blue,
+      //     // color: Colors.white,
       //     width: double.infinity, //MediaQuery.of(context).size.width,
       //     height: double.infinity,
       //     alignment: Alignment.center,
       //     child: Text('Material App Bar111'),
       //   ),
+      //   elevation: 0.5,
       // ),
       appBar: ZYAppBar(
+        // brightness: Brightness.dark,
+        backgroundColor: Colors.blue,
         hasBack: false,
         title: Text(
           'HomePage',
@@ -46,8 +51,13 @@ class HomePage extends StatelessWidget {
               context, MaterialPageRoute(builder: (context) => SecondPage()));
         },
         child: Container(
-          color: Colors.green,
-          child: Center(child: Text('Hello World')),
+          color: Colors.white,
+          child: Center(
+            child: Text(
+              'Hello World',
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
         ),
       ),
     );
