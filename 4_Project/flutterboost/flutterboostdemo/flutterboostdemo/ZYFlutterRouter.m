@@ -62,7 +62,6 @@
     
     FLBFlutterViewContainer *vc = FLBFlutterViewContainer.new;
     vc.fd_interactivePopDisabled = YES;
-    vc.fd_prefersNavigationBarHidden = YES;
     [vc setName:name params:params];
     [self.navigationController pushViewController:vc animated:animated];
     if(completion) completion(YES);
@@ -72,7 +71,8 @@
 
 
 - (void)flutterCanPop:(BOOL)canpop {
-    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    self.navigationController.interactivePopGestureRecognizer.enabled = !canpop;
+//    self.navigationController.viewControllers.firstObject.fd_interactivePopDisabled = canpop;
 }
 
 
