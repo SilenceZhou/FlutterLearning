@@ -1,0 +1,16 @@
+//
+//  flutterboostdemo.pch
+//  flutterboostdemo
+//
+//  Created by SilenceZhou on 2019/8/7.
+//  Copyright © 2019 SilenceZhou. All rights reserved.
+//
+
+#ifndef flutterboostdemo_pch
+#define flutterboostdemo_pch
+
+#import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
+
+
+
+#endif
