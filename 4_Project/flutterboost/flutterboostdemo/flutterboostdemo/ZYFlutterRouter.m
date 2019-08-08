@@ -60,6 +60,7 @@
 
 - (void)openPage:(nonnull NSString *)name params:(nonnull NSDictionary *)params animated:(BOOL)animated completion:(nonnull void (^)(BOOL))completion {
     
+    // 参考链接 https://juejin.im/post/5cf8e4b96fb9a07ed440f1d8  滑动冲突问题解决
     FLBFlutterViewContainer *vc = FLBFlutterViewContainer.new;
     vc.fd_interactivePopDisabled = YES;
     [vc setName:name params:params];

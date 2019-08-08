@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
       appBar: ZYAppBar(
         // brightness: Brightness.dark,
         backgroundColor: Colors.blue,
-        hasBack: false,
+        isShowLeading: false,
         title: Text(
           'HomePage',
           style: TextStyle(fontSize: 17, color: Colors.white),

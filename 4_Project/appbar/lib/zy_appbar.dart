@@ -24,6 +24,12 @@ class ZYAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// 左边控件
   final Widget leading;
 
+  /// 左边返回按钮的事件
+  final Function leadingCallBack;
+
+  /// 左边是否有控件，默认显示返回按钮, 如果没有则
+  final bool isShowLeading;
+
   /// 右边控件
   final Widget trailing;
 
@@ -35,9 +41,6 @@ class ZYAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   /// 分割线颜色，默认灰色 色值为 kColorffe9Eaee
   final Color separatorColor;
-
-  /// 左边按钮是否有返回控件，默认显示, 如果没有则
-  final bool hasBack;
 
   /// 状态栏颜色, 默认为dark
   final ZYStatusBarStyle statusBarStyle;
@@ -52,11 +55,12 @@ class ZYAppBar extends StatefulWidget implements PreferredSizeWidget {
     Key key,
     this.title,
     this.leading,
+    this.leadingCallBack,
     this.trailing,
     this.backgroundColor = Colors.white,
     this.isShowSeparator = true,
     this.separatorColor = kColorffe9Eaee,
-    this.hasBack = true,
+    this.isShowLeading = true,
     this.statusBarStyle = ZYStatusBarStyle.dark,
     this.elevation = 0.0,
   }) : super(key: key);
@@ -152,22 +156,47 @@ class _ZYAppBarState extends State<ZYAppBar> {
   }
 
   Widget _leftWidget() {
-    if (widget.hasBack == true) {
-      return _leftBack();
+    if (widget.isShowLeading == true) {
+      if (widget.leading != null) {
+        return GestureDetector(
+          onTap: () {
+            /// 自定义leading响应事件
+            if (widget.leadingCallBack != null) {
+              widget.leadingCallBack();
+              return;
+            }
+
+            /// 默认返回事件
+            if (Navigator.canPop(context)) {
+              Navigator.pop(context);
+            }
+          },
+          child: Container(
+            // 测试调试
+            // color: Colors.blue,
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 15),
+            child: widget.leading,
+          ),
+        );
+      } else {
+        return _leftBack();
+      }
     } else {
-      return Container(
-        // 测试调试
-        // color: Colors.blue,
-        alignment: Alignment.centerLeft,
-        padding: EdgeInsets.only(left: 15),
-        child: widget.leading,
-      );
+      return Container();
     }
   }
 
   Widget _leftBack() {
     return GestureDetector(
       onTap: () {
+        /// 自定义leading响应事件
+        if (widget.leadingCallBack != null) {
+          widget.leadingCallBack();
+          return;
+        }
+
+        /// 默认返回事件
         if (Navigator.canPop(context)) {
           Navigator.pop(context);
         }
