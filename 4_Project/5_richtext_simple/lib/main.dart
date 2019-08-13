@@ -41,9 +41,11 @@ class _HomePageState extends State<HomePage> {
                 TextSpan(
                   text: "\n Long Tap bold",
                   style: TextStyle(
-                      color: _randomColor(),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 50),
+                    color: _randomColor(),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 50,
+                    decoration: TextDecoration.underline,
+                  ),
                   recognizer: LongPressGestureRecognizer()
                     ..onLongPress = () {
                       print("Long Press");
