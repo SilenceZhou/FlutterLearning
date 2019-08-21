@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'const.dart';
 
+/// 参考：PinInputTextField
+
 class PhoneInput extends StatefulWidget {
   @override
   _PhoneInputState createState() => _PhoneInputState();
