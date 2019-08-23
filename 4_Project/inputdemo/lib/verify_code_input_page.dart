@@ -39,6 +39,16 @@ class _VerifyCodeInputsPageState extends State<VerifyCodeInputsPage> {
                 _comparamFlutterOrigin(),
                 _verificationCodeInput(),
                 _PinInputTextField(),
+                Container(
+                  width: double.infinity,
+                  height: 100,
+                  child: RaisedButton(
+                    child: Text("删除"),
+                    onPressed: () {
+                      _controller.text = "";
+                    },
+                  ),
+                )
               ],
             ),
           ),
@@ -66,10 +76,13 @@ class _VerifyCodeInputsPageState extends State<VerifyCodeInputsPage> {
     );
   }
 
+  TextEditingController _controller = TextEditingController();
   Widget _PinInputTextField() {
     return _innerInput(
       title: "【推荐】正则表达式(使用空格、最佳选择，但删除空格时光标会跳到最后,获取值的时候需要去掉空格)",
-      child: LcfarmCodeInput(),
+      child: LcfarmCodeInput(
+        controller: _controller,
+      ),
     );
   }
 
