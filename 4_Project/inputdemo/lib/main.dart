@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'phone_space_input.dart';
-import 'phone_input.dart';
+import 'phone_input_page.dart';
+import 'verify_code_input_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,8 +8,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      title: 'input demo',
       home: HomePage(),
+      routes: {
+        "/phoneinput": (BuildContext context) => PhoneInputsPage(),
+        "/verifycodeinput": (BuildContext context) => VerifyCodeInputsPage(),
+      },
     );
   }
 }
@@ -24,44 +28,25 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Material App Bar'),
+        title: Text("Input Demo"),
       ),
-      body: GestureDetector(
-        behavior: HitTestBehavior.translucent,
-        onTap: () {
-          print("应该收起键盘");
-          FocusScope.of(context).unfocus();
-        },
-        child: Container(
-          color: Colors.transparent,
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: 100,
-                ),
-                Container(
-                  color: Colors.white,
-                  child: TextField(
-                    style: TextStyle(fontSize: 20, color: Colors.red),
-                  ),
-                  padding: EdgeInsets.only(left: 30, right: 30),
-                ),
-                Container(
-                  color: Colors.white,
-                  child: PhoneSpaceInput(),
-                  padding: EdgeInsets.only(left: 30, right: 30),
-                ),
-                Container(
-                  color: Colors.white,
-                  child: PhoneInput(),
-                  padding: EdgeInsets.only(left: 30, right: 30),
-                ),
-              ],
-            ),
-          ),
-        ),
+      body: ListView(
+        children: <Widget>[
+          _item("3-4-4 phone input", () {
+            Navigator.pushNamed(context, "/phoneinput");
+          }),
+          _item("verify code input", () {
+            Navigator.pushNamed(context, "/verifycodeinput");
+          }),
+        ],
       ),
+    );
+  }
+
+  Widget _item(String text, Function callBack) {
+    return ListTile(
+      title: Text(text),
+      onTap: callBack,
     );
   }
 }

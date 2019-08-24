@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'const.dart';
 
+/// 参考：PinInputTextField
+
 class PhoneInput extends StatefulWidget {
   @override
   _PhoneInputState createState() => _PhoneInputState();
@@ -28,10 +30,11 @@ class _PhoneInputState extends State<PhoneInput> {
     ));
 
     _controller.addListener(() {
-      // if (_isExcuteListener) {
+      if (!_isExcuteListener) {
+        _isExcuteListener = true;
+        return;
+      }
       _updateTextTrend();
-      // }
-      // _isExcuteListener = true;
 
       if (_text != null && _text.length > 0) {
         if (_textTrend == TextTrend.Input &&
@@ -41,6 +44,7 @@ class _PhoneInputState extends State<PhoneInput> {
           if (_controller.text.length == 3 || _controller.text.length == 8) {
             _controller.text = "${_controller.text}${' '}";
             _text = _controller.text;
+            _isExcuteListener = false;
             setState(() {});
           }
         } else if (_textTrend == TextTrend.Delete &&
@@ -50,6 +54,7 @@ class _PhoneInputState extends State<PhoneInput> {
           if (_controller.text.length == 4 || _controller.text.length == 9) {
             _controller.text = _controller.text.trimRight();
             _text = _controller.text;
+            _isExcuteListener = false;
             setState(() {});
           }
         } else {
@@ -59,6 +64,7 @@ class _PhoneInputState extends State<PhoneInput> {
           setState(() {});
         }
       } else {
+        print("22222222222222222222");
         _text = _controller.text;
         setState(() {});
       }
@@ -67,17 +73,13 @@ class _PhoneInputState extends State<PhoneInput> {
 
   /// 获取输入的趋势：激活等待、删除、输入操作
   void _updateTextTrend() {
-    print("_updateTextTrend");
     if (_controller.text != null && _text != null) {
       String tmpText = _controller.text.toString();
       if (_text.length > tmpText.length) {
-        print("1111");
         _textTrend = TextTrend.Delete;
       } else if (_text.length < tmpText.length) {
-        print("222");
         _textTrend = TextTrend.Input;
       } else {
-        print("33333");
         _textTrend = TextTrend.Wait;
       }
     }
@@ -94,6 +96,7 @@ class _PhoneInputState extends State<PhoneInput> {
         /// Hide the counterText
         counterText: '',
       ),
+      keyboardType: TextInputType.number,
     );
   }
 }
