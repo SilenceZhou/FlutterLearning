@@ -16,14 +16,14 @@
     static id instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[self alloc] init];
-        [FlutterBoostPlugin.sharedInstance startFlutterWithPlatform:instance
-                                                            onStart:^(FlutterViewController *fvc)
-         {
-             // method channel
-             // ...
-             
-         }];
+        instance = [[ZYFlutterRouter alloc] init];
+//        [FlutterBoostPlugin.sharedInstance startFlutterWithPlatform:instance
+//                                                            onStart:^(FlutterViewController *fvc)
+//         {
+//             // method channel
+//             // ...
+//             
+//         }];
     });
     return instance;
 }

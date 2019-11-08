@@ -1,6 +1,6 @@
 {
   "name": "flutter_boost",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "summary": "A new Flutter plugin make flutter better to use!",
   "description": "A new Flutter plugin make flutter better to use!",
   "homepage": "http://example.com",
@@ -15,22 +15,25 @@
   },
   "source_files": "Classes/**/*.{h,m,mm}",
   "public_header_files": [
-    "Classes/Boost/FlutterBoost.h",
     "Classes/Boost/FlutterBoostPlugin.h",
     "Classes/Boost/FLBPlatform.h",
+    "Classes/Boost/FLBFlutterContainer.h",
     "Classes/Boost/FLBFlutterAppDelegate.h",
-    "Classes/Container/FLBFlutterViewContainer.h",
-    "Classes/Container/FLBViewControllerResultHandler.h"
+    "Classes/Boost/FLBTypes.h",
+    "Classes/Boost/FlutterBoost.h",
+    "Classes/Boost/BoostChannel.h",
+    "Classes/container/FLBFlutterViewContainer.h"
   ],
   "dependencies": {
     "Flutter": [
 
-    ],
-    "xservice_kit": [
-
     ]
   },
   "libraries": "c++",
+  "xcconfig": {
+    "CLANG_CXX_LANGUAGE_STANDARD": "c++11",
+    "CLANG_CXX_LIBRARY": "libc++"
+  },
   "platforms": {
     "ios": "8.0"
   }

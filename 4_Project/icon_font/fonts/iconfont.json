@@ -1,0 +1,275 @@
+{
+  "id": "1170685",
+  "name": "kappa",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon_",
+  "description": "借款人 app",
+  "glyphs": [
+    {
+      "icon_id": "8748314",
+      "name": "identity",
+      "font_class": "identity",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "8748595",
+      "name": "operating",
+      "font_class": "operating",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "8748596",
+      "name": "assets",
+      "font_class": "assets",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "8748597",
+      "name": "contact",
+      "font_class": "contact",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "8748598",
+      "name": "credit",
+      "font_class": "credit",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "8760266",
+      "name": "eye_open",
+      "font_class": "eye_open",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "8760267",
+      "name": "eye_close",
+      "font_class": "eye_close",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "8785333",
+      "name": "arrow_right",
+      "font_class": "arrow_down",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
+      "icon_id": "8785375",
+      "name": "arrow_right",
+      "font_class": "arrow_up",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
+      "icon_id": "8796275",
+      "name": "customer_service",
+      "font_class": "customer_service",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "8806629",
+      "name": "loan_history",
+      "font_class": "loan_history",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "8814132",
+      "name": "qrcode",
+      "font_class": "qrcode",
+      "unicode": "e659",
+      "unicode_decimal": 58969
+    },
+    {
+      "icon_id": "8822571",
+      "name": "add",
+      "font_class": "add",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "8846309",
+      "name": "succeed",
+      "font_class": "succeed",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "8878566",
+      "name": "calculator",
+      "font_class": "calculator",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "8881053",
+      "name": "notice",
+      "font_class": "notice",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "8892895",
+      "name": "close",
+      "font_class": "close",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "8927712",
+      "name": "warning",
+      "font_class": "warning",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "8927713",
+      "name": "waiting",
+      "font_class": "waiting",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "9098161",
+      "name": "dialog_close",
+      "font_class": "dialog_close",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "9339647",
+      "name": "trashcan",
+      "font_class": "trashcan",
+      "unicode": "e65c",
+      "unicode_decimal": 58972
+    },
+    {
+      "icon_id": "9731971",
+      "name": "checkbox_checked",
+      "font_class": "checkbox_checked",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "9731976",
+      "name": "checkbox_normal",
+      "font_class": "checkbox_normal",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "9733720",
+      "name": "circle_check_checked",
+      "font_class": "circle_check_checked",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "9751626",
+      "name": "clear",
+      "font_class": "clear",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "9763465",
+      "name": "delete",
+      "font_class": "delete",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "9787381",
+      "name": "my_loan",
+      "font_class": "my_loan",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "9787382",
+      "name": "set",
+      "font_class": "set",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "9789523",
+      "name": "msg",
+      "font_class": "msg",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "9809154",
+      "name": "right_arrow",
+      "font_class": "arrow_right",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "9809200",
+      "name": "arrow_left",
+      "font_class": "arrow_left",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "9813610",
+      "name": "home_pressed",
+      "font_class": "home_pressed",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "9813611",
+      "name": "account_normal",
+      "font_class": "account_normal",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "9813612",
+      "name": "home_normal",
+      "font_class": "home_normal",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "9813613",
+      "name": "account_pressed",
+      "font_class": "account_pressed",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "9819233",
+      "name": "rmb",
+      "font_class": "rmb",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "10042511",
+      "name": "scanning",
+      "font_class": "scanning",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "10878263",
+      "name": "info",
+      "font_class": "info",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    }
+  ]
+}

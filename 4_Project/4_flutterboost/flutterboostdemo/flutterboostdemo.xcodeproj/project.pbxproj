@@ -115,11 +115,12 @@
 			buildConfigurationList = B660AB4622FB117A006F9571 /* Build configuration list for PBXNativeTarget "flutterboostdemo" */;
 			buildPhases = (
 				9F9C5AAFF27754EF383341EA /* [CP] Check Pods Manifest.lock */,
+				B3B1C20D82EF30960AB84010 /* [CP-User] Run Flutter Build Script */,
 				B660AB2C22FB1178006F9571 /* Sources */,
 				B660AB2D22FB1178006F9571 /* Frameworks */,
 				B660AB2E22FB1178006F9571 /* Resources */,
-				D5047B147C6D8D8283B3BA39 /* [CP] Embed Pods Frameworks */,
 				B660AB4922FB1AA4006F9571 /* ShellScript */,
+				6101524BF5C12F1389AB2AD4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -176,6 +177,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6101524BF5C12F1389AB2AD4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-flutterboostdemo/Pods-flutterboostdemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-flutterboostdemo/Pods-flutterboostdemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-flutterboostdemo/Pods-flutterboostdemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9F9C5AAFF27754EF383341EA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,6 +216,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B3B1C20D82EF30960AB84010 /* [CP-User] Run Flutter Build Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../my_flutter/.metadata",
+				"${SRCROOT}/../my_flutter/.ios/Flutter/App.framework/App",
+				"${SRCROOT}/../my_flutter/.ios/Flutter/engine/Flutter.framework/Flutter",
+				"${SRCROOT}/../my_flutter/.ios/Flutter/flutter_export_environment.sh",
+			);
+			name = "[CP-User] Run Flutter Build Script";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset -u\nsource \"${SRCROOT}/../my_flutter/.ios/Flutter/flutter_export_environment.sh\"\n\"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh build";
+		};
 		B660AB4922FB1AA4006F9571 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,23 +248,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n\"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed\n";
-		};
-		D5047B147C6D8D8283B3BA39 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-flutterboostdemo/Pods-flutterboostdemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-flutterboostdemo/Pods-flutterboostdemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-flutterboostdemo/Pods-flutterboostdemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -389,6 +406,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V2Y42S7W86;
 				ENABLE_BITCODE = NO;
+				FLUTTER_ROOT = /Users/zhouyun/Documents/flutter/;
 				GCC_PREFIX_HEADER = "${SRCROOT}/flutterboostdemo/flutterboostdemo.pch";
 				INFOPLIST_FILE = flutterboostdemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -411,6 +429,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V2Y42S7W86;
 				ENABLE_BITCODE = NO;
+				FLUTTER_ROOT = /Users/zhouyun/Documents/flutter/;
 				GCC_PREFIX_HEADER = "${SRCROOT}/flutterboostdemo/flutterboostdemo.pch";
 				INFOPLIST_FILE = flutterboostdemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

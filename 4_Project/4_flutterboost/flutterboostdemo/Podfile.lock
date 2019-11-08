@@ -1,14 +1,12 @@
 PODS:
   - FDFullscreenPopGesture (1.1)
   - Flutter (1.0.0)
-  - flutter_boost (0.0.1):
+  - flutter_boost (0.0.2):
     - Flutter
-    - xservice_kit
   - FlutterPluginRegistrant (0.0.1):
     - Flutter
     - flutter_boost
-    - xservice_kit
-  - xservice_kit (0.0.1):
+  - my_flutter (0.0.1):
     - Flutter
 
 DEPENDENCIES:
@@ -16,10 +14,10 @@ DEPENDENCIES:
   - Flutter (from `../my_flutter/.ios/Flutter/engine`)
   - flutter_boost (from `../my_flutter/.ios/Flutter/.symlinks/flutter_boost/ios`)
   - FlutterPluginRegistrant (from `../my_flutter/.ios/Flutter/FlutterPluginRegistrant`)
-  - xservice_kit (from `../my_flutter/.ios/Flutter/.symlinks/xservice_kit/ios`)
+  - my_flutter (from `../my_flutter/.ios/Flutter`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - FDFullscreenPopGesture
 
 EXTERNAL SOURCES:
@@ -29,16 +27,16 @@ EXTERNAL SOURCES:
     :path: "../my_flutter/.ios/Flutter/.symlinks/flutter_boost/ios"
   FlutterPluginRegistrant:
     :path: "../my_flutter/.ios/Flutter/FlutterPluginRegistrant"
-  xservice_kit:
-    :path: "../my_flutter/.ios/Flutter/.symlinks/xservice_kit/ios"
+  my_flutter:
+    :path: "../my_flutter/.ios/Flutter"
 
 SPEC CHECKSUMS:
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
-  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
-  flutter_boost: 0e85ea37c74ed39ee7b91a35612afa1605557484
-  FlutterPluginRegistrant: 09e35a5c8903bbd46dc4a41f36a0075b6d4714d1
-  xservice_kit: a2f1b35addc126fce8687aeb183ab0c1ada5b7f3
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_boost: a7cfa776b75329d5e7d101d0cd33e75042bcde69
+  FlutterPluginRegistrant: 01e0f464d86bf611bf43b90bd216f2d2476e5188
+  my_flutter: c0ca42721b3297bc8d54e93782ac00730d3bd1a1
 
-PODFILE CHECKSUM: 2f6c5d6a0824d55aaf78cccec33bbad472d2d5f8
+PODFILE CHECKSUM: 2b00ccceace6e02840aab1034a9e91283172d0ad
 
-COCOAPODS: 1.7.0.beta.2
+COCOAPODS: 1.8.4

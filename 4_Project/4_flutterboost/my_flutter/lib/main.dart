@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
       Router.secondPage: (pageName, params, _) => SecondPage(),
     });
 
-    FlutterBoost.handleOnStartPage();
+    // FlutterBoost.handleOnStartPage();
   }
 
   Map<String, WidgetBuilder> routes = {

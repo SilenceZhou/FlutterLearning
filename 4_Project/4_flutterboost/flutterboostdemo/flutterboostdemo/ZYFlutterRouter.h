@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <flutter_boost/FLBPlatform.h>
+#import <Flutter/Flutter.h>
+#import <FlutterBoost.h>
 
 
 
